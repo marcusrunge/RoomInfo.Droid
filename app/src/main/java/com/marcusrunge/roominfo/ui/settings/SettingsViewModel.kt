@@ -1,13 +1,9 @@
 package com.marcusrunge.roominfo.ui.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.content.Context
+import com.marcusrunge.roominfo.ui.ViewModelBase
+import javax.inject.Inject
 
-class SettingsViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is settings Fragment"
-    }
-    val text: LiveData<String> = _text
-}
+class SettingsViewModel @Inject constructor(
+    private val context: Context
+) : ViewModelBase()

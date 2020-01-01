@@ -1,31 +1,40 @@
 package com.marcusrunge.roominfo.ui.settings
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.R
+import com.marcusrunge.roominfo.databinding.FragmentSettingsBinding
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class SettingsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: SettingsViewModel
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Override
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        AndroidSupportInjection.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        notificationsViewModel =
-            ViewModelProviders.of(this).get(SettingsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_settings, container, false)
-        val textView: TextView = root.findViewById(R.id.text_settings)
-        notificationsViewModel.text.observe(this, Observer {
-            textView.text = it
-        })
-        return root
+        val binding: FragmentSettingsBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
+        binding.lifecycleOwner = this
+        val viewmodel = ViewModelProviders.of(this, viewModelFactory)[SettingsViewModel::class.java]
+        binding.viewmodel = viewmodel
+        return binding.root
     }
 }
