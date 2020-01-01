@@ -1,4 +1,4 @@
-package com.marcusrunge.roominfo.ui.notifications
+package com.marcusrunge.roominfo.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.R
 
-class NotificationsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private lateinit var notificationsViewModel: NotificationsViewModel
+    private lateinit var notificationsViewModel: SettingsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,9 +20,9 @@ class NotificationsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         notificationsViewModel =
-            ViewModelProviders.of(this).get(NotificationsViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_notifications, container, false)
-        val textView: TextView = root.findViewById(R.id.text_notifications)
+            ViewModelProviders.of(this).get(SettingsViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_settings, container, false)
+        val textView: TextView = root.findViewById(R.id.text_settings)
         notificationsViewModel.text.observe(this, Observer {
             textView.text = it
         })

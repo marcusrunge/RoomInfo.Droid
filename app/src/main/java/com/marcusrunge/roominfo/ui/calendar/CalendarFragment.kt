@@ -1,4 +1,4 @@
-package com.marcusrunge.roominfo.ui.dashboard
+package com.marcusrunge.roominfo.ui.calendar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.R
 
-class DashboardFragment : Fragment() {
+class CalendarFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var dashboardViewModel: CalendarViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,9 +20,9 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
+            ViewModelProviders.of(this).get(CalendarViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_calendar, container, false)
+        val textView: TextView = root.findViewById(R.id.text_calendar)
         dashboardViewModel.text.observe(this, Observer {
             textView.text = it
         })
