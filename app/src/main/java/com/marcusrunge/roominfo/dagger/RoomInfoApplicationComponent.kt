@@ -9,7 +9,9 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ApplicationContextModule::class]
+        ApplicationContextModule::class,
+        ActivityModule::class,
+        FragmentModule::class]
 )
 interface RoomInfoApplicationComponent {
     fun inject(roomInfoApplication: RoomInfoApplication)
