@@ -2,8 +2,8 @@ package com.marcusrunge.roominfo.dagger.settingsservice
 
 import android.content.Context
 import com.marcusrunge.roominfo.dagger.ApplicationContextModule
-import com.marcusrunge.roominfo.interfaces.Settings
-import com.marcusrunge.roominfo.services.SettingsService
+import com.marcusrunge.roominfo.interfaces.ISettingsService
+import com.marcusrunge.roominfo.services.SettingsServiceService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 class SettingsServiceModule {
     @Provides
     @Singleton
-    fun provideSettingsService(context: Context): Settings {
-        return SettingsService.getInstance(context)
+    fun provideSettingsService(context: Context): ISettingsService {
+        return SettingsServiceService.getInstance(context)
     }
 }
