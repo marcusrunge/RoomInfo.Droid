@@ -342,6 +342,7 @@ healthchecksdb
 *.iml
 /*.iml
 /.gradle
+.gradle
 /local.properties
 local.properties
 /.idea/caches
