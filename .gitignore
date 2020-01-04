@@ -340,10 +340,7 @@ ASALocalRun/
 healthchecksdb
 
 *.iml
-/*.iml
-/.gradle
 .gradle
-/local.properties
 local.properties
 /.idea/caches
 /.idea/libraries
