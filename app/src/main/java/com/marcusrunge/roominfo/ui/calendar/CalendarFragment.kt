@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.databinding.FragmentCalendarBinding
 import dagger.android.support.AndroidSupportInjection
@@ -32,7 +31,7 @@ class CalendarFragment : Fragment() {
         val binding: FragmentCalendarBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_calendar, container, false)
         binding.lifecycleOwner = this
-        val viewmodel = ViewModelProviders.of(this, viewModelFactory)[CalendarViewModel::class.java]
+        val viewmodel = ViewModelProvider(this, viewModelFactory)[CalendarViewModel::class.java]
         binding.viewmodel = viewmodel
         return binding.root
     }

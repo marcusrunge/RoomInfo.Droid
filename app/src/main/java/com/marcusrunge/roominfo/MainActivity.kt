@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.databinding.ActivityMainBinding
 import com.marcusrunge.roominfo.ui.main.MainViewModel
 import dagger.android.AndroidInjection
@@ -20,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
-        val viewmodel = ViewModelProviders.of(this, viewModelFactory)[MainViewModel::class.java]
+        val viewmodel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         binding.viewmodel = viewmodel
     }
 }

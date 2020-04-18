@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.databinding.FragmentSettingsBinding
 import dagger.android.support.AndroidSupportInjection
@@ -33,7 +32,7 @@ class SettingsFragment : Fragment() {
         val binding: FragmentSettingsBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
         binding.lifecycleOwner = this
-        val viewmodel = ViewModelProviders.of(this, viewModelFactory)[SettingsViewModel::class.java]
+        val viewmodel = ViewModelProvider(this, viewModelFactory)[SettingsViewModel::class.java]
         binding.viewmodel = viewmodel
         return binding.root
     }
