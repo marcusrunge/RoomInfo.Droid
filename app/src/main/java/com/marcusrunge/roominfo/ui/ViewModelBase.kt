@@ -17,16 +17,12 @@ abstract class ViewModelBase : ViewModel(), Observable {
 
     protected fun notifyPropertiesChanged() {
         synchronized(this) {
-            if (propertyChangeRegistry == null)
-                return
             propertyChangeRegistry.notifyCallbacks(this, 0, null)
         }
     }
 
     protected fun notifyPropertyChanged(propertyId: Int) {
         synchronized(this) {
-            if (propertyChangeRegistry == null)
-                return
             propertyChangeRegistry.notifyCallbacks(this, propertyId, null)
         }
     }
