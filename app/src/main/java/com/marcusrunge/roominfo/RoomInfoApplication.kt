@@ -1,9 +1,7 @@
 package com.marcusrunge.roominfo
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
 import com.marcusrunge.roominfo.dagger.DaggerRoomInfoApplicationComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
