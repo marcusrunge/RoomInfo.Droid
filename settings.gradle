@@ -1,2 +1,4 @@
+include ':sockets'
+include ':data'
 include ':app'
 rootProject.name='Room Info'
