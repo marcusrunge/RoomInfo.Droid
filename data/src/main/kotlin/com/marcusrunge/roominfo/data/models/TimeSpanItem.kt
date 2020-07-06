@@ -1,9 +1,11 @@
 package com.marcusrunge.roominfo.data.models
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.time.OffsetDateTime
 
+@Entity
 data class TimeSpanItem(
     @PrimaryKey @ColumnInfo(name = "id") val Id: Int,
     @ColumnInfo(name = "day_of_week") val DayOfWeek: Int?,

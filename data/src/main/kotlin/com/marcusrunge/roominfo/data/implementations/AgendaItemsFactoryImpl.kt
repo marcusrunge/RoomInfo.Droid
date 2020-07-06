@@ -1,16 +1,20 @@
 package com.marcusrunge.roominfo.data.implementations
 
-import com.marcusrunge.roominfo.data.bases.DataBase
+import android.content.Context
+import androidx.room.Room
+import com.marcusrunge.roominfo.data.bases.AgendaItemsBase
 import com.marcusrunge.roominfo.data.interfaces.AgendaItems
 import com.marcusrunge.roominfo.data.interfaces.AgendaItemsFactory
 
 internal class AgendaItemsFactoryImpl {
     companion object : AgendaItemsFactory {
         var agendaItems: AgendaItems? = null
-        override fun createSingleton(dataBase: DataBase): AgendaItems = when {
+        override fun createSingleton(context: Context): AgendaItems = when {
             agendaItems != null -> agendaItems!!
             else -> {
-                agendaItems = AgendaItemsImpl(dataBase)
+                agendaItems =
+                    Room.databaseBuilder(context, AgendaItemsBase::class.java, "roominfo").build()
+                        .agendaItems()
                 agendaItems!!
             }
         }
