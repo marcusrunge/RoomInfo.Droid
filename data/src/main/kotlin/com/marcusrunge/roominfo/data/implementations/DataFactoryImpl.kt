@@ -4,7 +4,7 @@ import android.content.Context
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.data.interfaces.DataFactory
 
-internal class DataFactoryImpl {
+class DataFactoryImpl {
     companion object : DataFactory {
         var data: Data? = null
         override fun createSingleton(context: Context): Data = when {

@@ -1,6 +1,6 @@
 package com.marcusrunge.roominfo.interfaces
 
-interface ISettingsService {
+interface SettingsService {
     fun setSetting(key: String?, value: Any?)
     fun setSetting(
         key: String?,

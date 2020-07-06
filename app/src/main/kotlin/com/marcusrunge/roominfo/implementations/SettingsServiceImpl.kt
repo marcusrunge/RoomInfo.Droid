@@ -1,11 +1,11 @@
-package com.marcusrunge.roominfo.services
+package com.marcusrunge.roominfo.implementations
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.marcusrunge.roominfo.interfaces.ISettingsService
+import com.marcusrunge.roominfo.interfaces.SettingsService
 
-class SettingsServiceService private constructor(context: Context) : Any(),
-    ISettingsService {
+class SettingsServiceImpl private constructor(context: Context) : Any(),
+    SettingsService {
     private val sharedPreferences: SharedPreferences =
         context.getSharedPreferences("SharedPreferences", Context.MODE_PRIVATE)
 
@@ -127,12 +127,12 @@ class SettingsServiceService private constructor(context: Context) : Any(),
     }
 
     companion object {
-        private var instance: ISettingsService? = null
-        fun getInstance(context: Context): ISettingsService {
+        private var instance: SettingsService? = null
+        fun getInstance(context: Context): SettingsService {
             if (instance == null) {
-                instance = SettingsServiceService(context)
+                instance = SettingsServiceImpl(context)
             }
-            return instance as ISettingsService
+            return instance as SettingsService
         }
     }
 }

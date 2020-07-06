@@ -60,6 +60,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+    implementation project(path: ':data')
+    implementation project(path: ':sockets')
     kapt "com.android.databinding:compiler:$compiler_version"
     kapt "android.arch.lifecycle:common-java8:$lifecycle_version"
     implementation "com.google.dagger:dagger:$dagger_version"
