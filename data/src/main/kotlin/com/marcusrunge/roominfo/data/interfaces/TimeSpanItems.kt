@@ -9,7 +9,7 @@ interface TimeSpanItems {
     @Query("SELECT * FROM timespanitem")
     fun getAll(): List<TimeSpanItem>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(timeSpanItem: TimeSpanItem)
 
     @Update
@@ -17,4 +17,7 @@ interface TimeSpanItems {
 
     @Delete
     fun delete(timeSpanItem: TimeSpanItem)
+
+    @Query("DELETE FROM timespanitem WHERE id = :id")
+    fun delete(id: Int)
 }

@@ -8,7 +8,7 @@ interface AgendaItems {
     @Query("SELECT * FROM agendaitem")
     fun getAll(): List<AgendaItem>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(agendaItem: AgendaItem)
 
     @Update
@@ -16,4 +16,7 @@ interface AgendaItems {
 
     @Delete
     fun delete(agendaItem: AgendaItem)
+
+    @Query("DELETE FROM agendaitem WHERE id = :id")
+    fun delete(id: Int)
 }
