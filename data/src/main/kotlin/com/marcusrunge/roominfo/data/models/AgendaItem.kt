@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class AgendaItem(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val Id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val Id: Long,
     @ColumnInfo(name = "title") val Title: String?,
     @ColumnInfo(name = "start") val Start: Long?,
     @ColumnInfo(name = "end") val End: Long?,

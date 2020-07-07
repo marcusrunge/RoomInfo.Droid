@@ -26,7 +26,7 @@ class AgendaItemsTest {
     @After
     fun closeDb() {
         data.agendaItems.deleteAll()
-        //(data.agendaItems as RoomDatabase).close()
+        data.close()
     }
 
     @Test
@@ -41,8 +41,8 @@ class AgendaItemsTest {
             TimeStamp = 0,
             IsDeleted = false
         )
-        data.agendaItems.insert(agendaItem)
+        val id = data.agendaItems.insert(agendaItem)
         val agendaItems = data.agendaItems.getAll()
-        assertThat(agendaItems[0], equalTo(agendaItem))
+        assertThat(agendaItems[0].Id, equalTo(id))
     }
 }

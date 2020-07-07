@@ -12,7 +12,7 @@ interface AgendaItems {
     fun getThree(dateTime: Long): List<AgendaItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(agendaItem: AgendaItem)
+    fun insert(agendaItem: AgendaItem): Long
 
     @Update
     fun update(agendaItem: AgendaItem)

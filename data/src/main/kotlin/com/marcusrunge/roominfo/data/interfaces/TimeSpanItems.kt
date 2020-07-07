@@ -10,7 +10,7 @@ interface TimeSpanItems {
     fun getAll(): List<TimeSpanItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(timeSpanItem: TimeSpanItem)
+    fun insert(timeSpanItem: TimeSpanItem): Long
 
     @Update
     fun update(timeSpanItem: TimeSpanItem)

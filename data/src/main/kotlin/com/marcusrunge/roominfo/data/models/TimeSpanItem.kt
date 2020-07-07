@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class TimeSpanItem(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val Id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val Id: Long,
     @ColumnInfo(name = "day_of_week") val DayOfWeek: Int?,
     @ColumnInfo(name = "start") val Start: Long?,
     @ColumnInfo(name = "end") val End: Long?,
