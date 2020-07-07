@@ -20,4 +20,7 @@ interface TimeSpanItems {
 
     @Query("DELETE FROM timespanitem WHERE id = :id")
     fun delete(id: Int)
+
+    @Query("DELETE FROM timespanitem")
+    fun deleteAll()
 }
