@@ -8,7 +8,7 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.0'
+    buildToolsVersion '30.0.1'
     defaultConfig {
         applicationId "com.marcusrunge.roominfo"
         minSdkVersion 24
@@ -39,7 +39,6 @@ android {
 
     buildFeatures{
         dataBinding = true
-        viewBinding = true
     }
 
     sourceSets{
