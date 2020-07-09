@@ -9,12 +9,12 @@ data class AgendaItem(
     private var _title: String?,
     private var _start: Long?,
     private var _end: Long?,
-    private var _isAllDayEvent: Boolean?,
-    private var _isOverridden: Boolean?,
+    private var _allDayEvent: Boolean?,
+    private var _overridden: Boolean?,
     private var _description: String?,
     private var _occupancy: Int?,
     private var _timeStamp: Long?,
-    private var _isDeleted: Boolean?
+    private var _deleted: Boolean?
 ) : BaseObservable() {
     @get:Bindable
     var id: Long?
@@ -49,19 +49,19 @@ data class AgendaItem(
         }
 
     @get:Bindable
-    var isAllDayEvent: Boolean
-        get() = _isAllDayEvent
+    var allDayEvent: Boolean?
+        get() = _allDayEvent
         set(value) {
-            _isAllDayEvent = value
-            notifyPropertyChanged(BR.isAllDayEvent)
+            _allDayEvent = value
+            notifyPropertyChanged(BR.allDayEvent)
         }
 
     @get:Bindable
-    var isOverridden: Boolean?
-        get() = _isOverridden
+    var overridden: Boolean?
+        get() = _overridden
         set(value) {
-            _isOverridden = value
-            notifyPropertyChanged(BR.isOverridden)
+            _overridden = value
+            notifyPropertyChanged(BR.overridden)
         }
 
     @get:Bindable
@@ -89,10 +89,10 @@ data class AgendaItem(
         }
 
     @get:Bindable
-    var isDeleted: Boolean?
-        get() = _isDeleted
+    var deleted: Boolean?
+        get() = _deleted
         set(value) {
-            _isDeleted = value
-            notifyPropertyChanged(BR.isDeleted)
+            _deleted = value
+            notifyPropertyChanged(BR.deleted)
         }
 }
