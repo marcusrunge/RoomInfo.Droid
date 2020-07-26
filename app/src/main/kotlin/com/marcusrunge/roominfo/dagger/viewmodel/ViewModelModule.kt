@@ -1,6 +1,7 @@
 package com.marcusrunge.roominfo.dagger.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.marcusrunge.roominfo.ui.agendaitem.AgendaItemViewModel
 import com.marcusrunge.roominfo.ui.calendar.CalendarViewModel
 import com.marcusrunge.roominfo.ui.home.HomeViewModel
 import com.marcusrunge.roominfo.ui.main.MainViewModel
@@ -30,4 +31,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SettingsViewModel::class)
     internal abstract fun bindSettingsViewModel(viewModel: SettingsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AgendaItemViewModel::class)
+    internal abstract fun bindAgendaItemViewModel(viewModel: AgendaItemViewModel): ViewModel
 }

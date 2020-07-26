@@ -15,11 +15,26 @@
         android:id="@+id/navigation_calendar"
         android:name="com.marcusrunge.roominfo.ui.calendar.CalendarFragment"
         android:label="@string/title_calendar"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/fragment_calendar">
+        <action
+            android:id="@+id/action_navigation_calendar_to_navigation_agendaitem"
+            app:destination="@id/navigation_agendaitem" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.marcusrunge.roominfo.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/navigation_agendaitem"
+        android:name="com.marcusrunge.roominfo.ui.agendaitem.AgendaItemFragment"
+        android:label="@string/title_agendaitem"
+        tools:layout="@layout/fragment_agendaitem">
+        <action
+            android:id="@+id/action_agendaitem_to_calendar"
+            app:destination="@id/navigation_calendar"
+            app:popUpTo="@id/navigation_calendar" />
+    </fragment>
 </navigation>
