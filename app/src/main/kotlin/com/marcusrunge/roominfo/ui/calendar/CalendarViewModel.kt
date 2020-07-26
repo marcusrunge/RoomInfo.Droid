@@ -2,6 +2,8 @@ package com.marcusrunge.roominfo.ui.calendar
 
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import androidx.navigation.NavController
+import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
@@ -11,7 +13,8 @@ import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
-    private val data: Data
+    private val data: Data,
+    private val navController: NavController
 ) : ViewModelBase() {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
 
@@ -42,8 +45,8 @@ class CalendarViewModel @Inject constructor(
         }
     }
 
-    fun showAddAgendaItemDialog() {
-
+    fun navigateToAgendaItem() {
+        navController.navigate(R.id.navigation_agendaitem, null)
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {
