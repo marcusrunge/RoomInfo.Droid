@@ -33,6 +33,10 @@ class HomeViewModel @Inject constructor(
         }
 
     init {
+        loadItems()
+    }
+
+    private fun loadItems() {
         CoroutineScope(Dispatchers.IO).launch {
             data.agendaItems.getThree(currentTimeMillis()).forEach {
                 agendaItems.add(

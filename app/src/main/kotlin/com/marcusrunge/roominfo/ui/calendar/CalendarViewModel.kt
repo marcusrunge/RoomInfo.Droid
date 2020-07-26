@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
+import com.marcusrunge.roominfo.interfaces.OnBackClickedListener
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.ui.ViewModelBase
@@ -19,7 +20,7 @@ class CalendarViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val data: Data,
     private val navController: NavController
-) : ViewModelBase() {
+) : ViewModelBase(), OnBackClickedListener {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
 
     @get:Bindable
@@ -31,6 +32,11 @@ class CalendarViewModel @Inject constructor(
         }
 
     init {
+        applicationResource.mainActivity?.addOnBackClickedListener(this)
+        loadAgendaItems()
+    }
+
+    private fun loadAgendaItems() {
         CoroutineScope(Dispatchers.IO).launch {
             data.agendaItems.getAll().forEach {
                 agendaItems.add(
@@ -59,55 +65,6 @@ class CalendarViewModel @Inject constructor(
         navController.navigate(R.id.navigation_agendaitem, null)
     }
 
-    private fun addAgendaItem(agendaItem: AgendaItem) {
-        agendaItems.add(agendaItem)
-        data.agendaItems.insert(
-            com.marcusrunge.roominfo.data.models.AgendaItem(
-                0,
-                agendaItem.title,
-                agendaItem.start,
-                agendaItem.end,
-                agendaItem.allDayEvent,
-                agendaItem.overridden,
-                agendaItem.description,
-                agendaItem.occupancy,
-                agendaItem.timeStamp,
-                agendaItem.deleted
-            )
-        )
-    }
-
-    private fun updateAgendaItem(agendaItem: AgendaItem) {
-        for (i in agendaItems.indices) {
-            if (agendaItems[i].id == agendaItem.id) {
-                agendaItems[i].title = agendaItem.title
-                agendaItems[i].start = agendaItem.start
-                agendaItems[i].end = agendaItem.end
-                agendaItems[i].allDayEvent = agendaItem.allDayEvent
-                agendaItems[i].overridden = agendaItem.overridden
-                agendaItems[i].description = agendaItem.description
-                agendaItems[i].occupancy = agendaItem.occupancy
-                agendaItems[i].timeStamp = agendaItem.timeStamp
-                agendaItems[i].deleted = agendaItem.deleted
-                break
-            }
-        }
-        data.agendaItems.update(
-            com.marcusrunge.roominfo.data.models.AgendaItem(
-                agendaItem.id!!,
-                agendaItem.title,
-                agendaItem.start,
-                agendaItem.end,
-                agendaItem.allDayEvent,
-                agendaItem.overridden,
-                agendaItem.description,
-                agendaItem.occupancy,
-                agendaItem.timeStamp,
-                agendaItem.deleted
-            )
-        )
-    }
-
     fun deleteAgendaItem(id: Long) {
         for (i in agendaItems.indices) {
             if (agendaItems[i].id == id) {
@@ -120,5 +77,14 @@ class CalendarViewModel @Inject constructor(
 
     override fun updateView(obj: Any) {
         agendaRecyclerViewAdapter?.notifyDataSetChanged()
+    }
+
+    override fun onBackClicked() {
+        loadAgendaItems()
+    }
+
+    override fun onCleared() {
+        applicationResource.mainActivity?.removeOnBackClickedListener(this)
+        super.onCleared()
     }
 }
