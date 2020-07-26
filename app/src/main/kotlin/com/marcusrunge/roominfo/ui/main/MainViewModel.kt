@@ -17,4 +17,8 @@ class MainViewModel @Inject constructor(private val applicationResource: Applica
     ) {
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun updateView(obj: Any) {
+        TODO("Not yet implemented")
+    }
 }

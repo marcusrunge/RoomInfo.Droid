@@ -1,11 +1,27 @@
 package com.marcusrunge.roominfo.ui
 
+import android.os.Handler
+import android.os.Looper
+import android.os.Message
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.ViewModel
 
 abstract class ViewModelBase : ViewModel(), Observable {
+    companion object {
+        const val UPDATE_VIEW: Int = 1
+    }
+
     private val propertyChangeRegistry = PropertyChangeRegistry()
+    protected val handler: Handler = object : Handler(Looper.getMainLooper()) {
+        override fun handleMessage(inputMessage: Message) {
+            when (inputMessage.what) {
+                UPDATE_VIEW -> updateView(inputMessage.obj)
+            }
+        }
+    }
+
+    abstract fun updateView(obj: Any)
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback) {
         propertyChangeRegistry.add(callback)

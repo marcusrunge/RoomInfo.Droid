@@ -1,5 +1,6 @@
 package com.marcusrunge.roominfo.ui.calendar
 
+import android.os.Message
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
@@ -9,6 +10,9 @@ import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.ui.ViewModelBase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
@@ -27,21 +31,27 @@ class CalendarViewModel @Inject constructor(
         }
 
     init {
-        data.agendaItems.getAll().forEach {
-            agendaItems.add(
-                AgendaItem(
-                    it.Id,
-                    it.Title,
-                    it.Start,
-                    it.End,
-                    it.IsAllDayEvent,
-                    it.IsOverridden,
-                    it.Description,
-                    it.Occupancy,
-                    it.TimeStamp,
-                    it.IsDeleted
+        CoroutineScope(Dispatchers.IO).launch {
+            data.agendaItems.getAll().forEach {
+                agendaItems.add(
+                    AgendaItem(
+                        it.Id,
+                        it.Title,
+                        it.Start,
+                        it.End,
+                        it.IsAllDayEvent,
+                        it.IsOverridden,
+                        it.Description,
+                        it.Occupancy,
+                        it.TimeStamp,
+                        it.IsDeleted
+                    )
                 )
-            )
+            }
+            val updateViewMessage = Message()
+            updateViewMessage.what = UPDATE_VIEW
+            updateViewMessage.obj = null
+            handler.sendMessage(updateViewMessage)
         }
     }
 
@@ -106,5 +116,9 @@ class CalendarViewModel @Inject constructor(
             }
         }
         data.agendaItems.delete(id.toInt())
+    }
+
+    override fun updateView(obj: Any) {
+        agendaRecyclerViewAdapter?.notifyDataSetChanged()
     }
 }

@@ -8,4 +8,8 @@ import javax.inject.Inject
 class AgendaItemViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val data: Data
-) : ViewModelBase()
+) : ViewModelBase() {
+    override fun updateView(obj: Any) {
+        TODO("Not yet implemented")
+    }
+}

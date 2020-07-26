@@ -8,4 +8,8 @@ import javax.inject.Inject
 class SettingsViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val settingsService: SettingsService
-) : ViewModelBase()
+) : ViewModelBase() {
+    override fun updateView(obj: Any) {
+        TODO("Not yet implemented")
+    }
+}
