@@ -7,12 +7,11 @@ import com.marcusrunge.roominfo.data.interfaces.TimeSpanItems
 
 internal class DataImpl(context: Context) : DataBase(context) {
     override val agendaItems: AgendaItems
-        get() = agendaItemsBase.agendaItems()
+        get() = roomInfoItemsBase.agendaItems()
     override val timeSpanItems: TimeSpanItems
-        get() = timeSpanItemsBase.timeSpanItems()
+        get() = roomInfoItemsBase.timeSpanItems()
 
     override fun close() {
-        agendaItemsBase.close()
-        timeSpanItemsBase.close()
+        roomInfoItemsBase.close()
     }
 }

@@ -50,7 +50,7 @@ class CalendarViewModel @Inject constructor(
             }
             val updateViewMessage = Message()
             updateViewMessage.what = UPDATE_VIEW
-            updateViewMessage.obj = null
+            updateViewMessage.obj = Any()
             handler.sendMessage(updateViewMessage)
         }
     }

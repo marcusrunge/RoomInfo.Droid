@@ -1,5 +1,6 @@
 package com.marcusrunge.roominfo.dagger
 
+import com.marcusrunge.roominfo.ui.agendaitem.AgendaItemFragment
 import com.marcusrunge.roominfo.ui.calendar.CalendarFragment
 import com.marcusrunge.roominfo.ui.home.HomeFragment
 import com.marcusrunge.roominfo.ui.settings.SettingsFragment
@@ -16,4 +17,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun contributeSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeAgendaItemFragment(): AgendaItemFragment
 }
