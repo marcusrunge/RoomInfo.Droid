@@ -1,18 +1,18 @@
 package com.marcusrunge.roominfo.dagger.settingsservice
 
-import android.content.Context
-import com.marcusrunge.roominfo.dagger.ApplicationContextModule
+import com.marcusrunge.roominfo.dagger.applicationresource.ApplicationResourceModule
 import com.marcusrunge.roominfo.implementations.SettingsServiceImpl
 import com.marcusrunge.roominfo.interfaces.SettingsService
+import com.marcusrunge.roominfo.models.ApplicationResource
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module(includes = [ApplicationContextModule::class])
+@Module(includes = [ApplicationResourceModule::class])
 class SettingsServiceModule {
     @Provides
     @Singleton
-    fun provideSettingsService(context: Context): SettingsService {
-        return SettingsServiceImpl.getInstance(context)
+    fun provideSettingsService(applicationResource: ApplicationResource): SettingsService {
+        return SettingsServiceImpl.getInstance(applicationResource.applicationContext!!)
     }
 }

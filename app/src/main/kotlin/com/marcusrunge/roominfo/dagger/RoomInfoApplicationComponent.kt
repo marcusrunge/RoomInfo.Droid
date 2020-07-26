@@ -1,6 +1,7 @@
 package com.marcusrunge.roominfo.dagger
 
 import com.marcusrunge.roominfo.RoomInfoApplication
+import com.marcusrunge.roominfo.dagger.applicationresource.ApplicationResourceModule
 import com.marcusrunge.roominfo.dagger.data.DataModule
 import com.marcusrunge.roominfo.dagger.settingsservice.SettingsServiceModule
 import com.marcusrunge.roominfo.dagger.sockets.SocketsModule
@@ -14,14 +15,14 @@ import javax.inject.Singleton
 @Component(
     modules = [
         AndroidSupportInjectionModule::class,
-        ApplicationContextModule::class,
         ActivityModule::class,
         FragmentModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class,
         SettingsServiceModule::class,
         DataModule::class,
-        SocketsModule::class]
+        SocketsModule::class,
+        ApplicationResourceModule::class]
 )
 interface RoomInfoApplicationComponent {
     fun inject(roomInfoApplication: RoomInfoApplication)
