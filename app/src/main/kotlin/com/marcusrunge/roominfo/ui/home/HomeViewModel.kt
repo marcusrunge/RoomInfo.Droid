@@ -1,6 +1,9 @@
 package com.marcusrunge.roominfo.ui.home
 
 import android.os.Message
+import androidx.databinding.Bindable
+import androidx.databinding.library.baseAdapters.BR
+import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.interfaces.SettingsService
 import com.marcusrunge.roominfo.models.AgendaItem
@@ -20,6 +23,14 @@ class HomeViewModel @Inject constructor(
 ) : ViewModelBase() {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
+
+    @get:Bindable
+    var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
+        AgendaRecyclerViewAdapter(agendaItems)
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.agendaRecyclerViewAdapter)
+        }
 
     init {
         CoroutineScope(Dispatchers.IO).launch {

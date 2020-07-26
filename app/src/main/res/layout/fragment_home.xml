@@ -112,6 +112,7 @@
                 android:id="@+id/agenda"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}"
                 app:layout_constraintEnd_toStartOf="@id/selection"
                 app:layout_constraintStart_toEndOf="@id/occupancy"
                 app:layout_constraintTop_toTopOf="parent" />
