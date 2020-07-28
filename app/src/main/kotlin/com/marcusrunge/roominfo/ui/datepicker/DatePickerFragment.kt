@@ -7,7 +7,8 @@ import android.widget.DatePicker
 import androidx.fragment.app.DialogFragment
 import java.util.*
 
-class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener {
+class DatePickerFragment(private val onDateSetAction: (year: Int, month: Int, day: Int) -> Unit) :
+    DialogFragment(), DatePickerDialog.OnDateSetListener {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val c = Calendar.getInstance()
         val year = c.get(Calendar.YEAR)
@@ -17,7 +18,6 @@ class DatePickerFragment : DialogFragment(), DatePickerDialog.OnDateSetListener 
     }
 
     override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-        TODO("Not yet implemented")
+        onDateSetAction.invoke(p1, p2, p3)
     }
-
 }

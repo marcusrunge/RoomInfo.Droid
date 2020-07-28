@@ -10,6 +10,8 @@ import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.ui.ViewModelBase
+import com.marcusrunge.roominfo.ui.datepicker.DatePickerFragment
+import com.marcusrunge.roominfo.ui.timepicker.TimePickerFragment
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -110,14 +112,22 @@ class AgendaItemViewModel @Inject constructor(
 
     fun openPicker(view: View) {
         when (view.id) {
-            R.id.startDate -> {
-            }
-            R.id.startTime -> {
-            }
-            R.id.endDate -> {
-            }
-            R.id.endTime -> {
-            }
+            R.id.startDate -> DatePickerFragment { y: Int, m: Int, d: Int -> }.show(
+                applicationResource.mainActivity!!.supportFragmentManager,
+                "startDate"
+            )
+            R.id.startTime -> TimePickerFragment { h: Int, m: Int -> }.show(
+                applicationResource.mainActivity!!.supportFragmentManager,
+                "startTime"
+            )
+            R.id.endDate -> DatePickerFragment { y: Int, m: Int, d: Int -> }.show(
+                applicationResource.mainActivity!!.supportFragmentManager,
+                "endDate"
+            )
+            R.id.endTime -> TimePickerFragment { h: Int, m: Int -> }.show(
+                applicationResource.mainActivity!!.supportFragmentManager,
+                "endTime"
+            )
         }
     }
 
