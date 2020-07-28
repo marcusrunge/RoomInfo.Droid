@@ -7,4 +7,13 @@
     <string name="select">Select Occupancy:</string>
     <string name="agendaItemTitle">Title</string>
     <string name="descriptionTitle">Description:</string>
+    <string-array name="occupancy">
+        <item>FREE</item>
+        <item>PRESENT</item>
+        <item>ABSENT</item>
+        <item>BUSY</item>
+        <item>OCCUPIED</item>
+        <item>LOCKED</item>
+        <item>HOMEOFFICE</item>
+    </string-array>
 </resources>

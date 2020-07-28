@@ -33,6 +33,7 @@ class AgendaItemFragment : Fragment() {
         binding.lifecycleOwner = this
         val viewmodel = ViewModelProvider(this, viewModelFactory)[AgendaItemViewModel::class.java]
         binding.viewmodel = viewmodel
+        viewmodel.id = arguments?.let { AgendaItemFragmentArgs.fromBundle(it).itemId }!!
         return binding.root
     }
 }

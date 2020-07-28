@@ -36,5 +36,9 @@
             android:id="@+id/action_agendaitem_to_calendar"
             app:destination="@id/navigation_calendar"
             app:popUpTo="@id/navigation_calendar" />
+        <argument
+            android:name="item_id"
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 </navigation>

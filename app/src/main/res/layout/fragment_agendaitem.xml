@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -8,9 +9,10 @@
             type="com.marcusrunge.roominfo.ui.agendaitem.AgendaItemViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?android:attr/actionBarSize">
 
         <TextView
             android:id="@+id/agendaItemTitleTitle"
@@ -22,15 +24,21 @@
 
         <EditText
             android:id="@+id/agendaItemTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:text="@={viewmodel.agendaItemTitle}"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/agendaItemTitleTitle" />
 
         <TextView
             android:id="@+id/startDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{(v)->viewmodel.openPicker(v)}"
+            android:text="@{viewmodel.startDate}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/agendaItemTitle" />
 
@@ -38,6 +46,10 @@
             android:id="@+id/startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{(v)->viewmodel.openPicker(v)}"
+            android:text="@{viewmodel.startTime}"
             app:layout_constraintStart_toEndOf="@id/startDate"
             app:layout_constraintTop_toBottomOf="@id/agendaItemTitle" />
 
@@ -45,6 +57,7 @@
             android:id="@+id/allDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="@={viewmodel.allDay}"
             app:layout_constraintBottom_toBottomOf="@id/startTime"
             app:layout_constraintStart_toEndOf="@id/startTime"
             app:layout_constraintTop_toTopOf="@id/startTime" />
@@ -53,6 +66,10 @@
             android:id="@+id/endDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{(v)->viewmodel.openPicker(v)}"
+            android:text="@{viewmodel.endDate}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/startDate" />
 
@@ -60,6 +77,10 @@
             android:id="@+id/endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{(v)->viewmodel.openPicker(v)}"
+            android:text="@{viewmodel.endTime}"
             app:layout_constraintStart_toEndOf="@id/endDate"
             app:layout_constraintTop_toBottomOf="@id/startTime" />
 
@@ -75,8 +96,12 @@
             android:id="@+id/occupancy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/select"
+            app:layout_constraintTop_toTopOf="@id/select"
+            app:setArrayAdapter="@{viewmodel.occupancyAdapter}"
             app:layout_constraintStart_toEndOf="@id/select"
-            app:layout_constraintTop_toBottomOf="@id/endTime" />
+            app:setSelection="@{viewmodel.occupancySelection}"
+            app:setsetOnItemSelectedListener="@{viewmodel}" />
 
         <TextView
             android:id="@+id/descriptionTitle"
@@ -88,9 +113,22 @@
 
         <EditText
             android:id="@+id/description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="top"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/descriptionTitle" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:onClick="@{()->viewmodel.saveAgendaItem()}"
+            android:src="@drawable/ic_save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

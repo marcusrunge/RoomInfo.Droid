@@ -4,7 +4,6 @@ import android.os.Message
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
-import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.interfaces.OnBackClickedListener
@@ -61,8 +60,15 @@ class CalendarViewModel @Inject constructor(
         }
     }
 
-    fun navigateToAgendaItem() {
-        navController.navigate(R.id.navigation_agendaitem, null)
+    fun addAgendaItem() {
+        val directions =
+            CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(0)
+        navController.navigate(directions)
+    }
+
+    fun editAgendaItem() {
+        /*val directions = CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(0)
+        navController.navigate(directions)*/
     }
 
     fun deleteAgendaItem(id: Long) {
