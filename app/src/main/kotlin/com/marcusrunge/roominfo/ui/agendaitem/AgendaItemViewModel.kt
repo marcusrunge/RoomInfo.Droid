@@ -13,6 +13,7 @@ import com.marcusrunge.roominfo.ui.ViewModelBase
 import com.marcusrunge.roominfo.ui.datepicker.DatePickerFragment
 import com.marcusrunge.roominfo.ui.timepicker.TimePickerFragment
 import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 import kotlin.properties.Delegates
@@ -25,6 +26,8 @@ class AgendaItemViewModel @Inject constructor(
     private val current = LocalDateTime.now()
     private val dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+    private var localStart: LocalDateTime = current
+    private var localEnd: LocalDateTime = current
 
     @get:Bindable
     var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
@@ -106,25 +109,52 @@ class AgendaItemViewModel @Inject constructor(
         if (id > 0) {
             //TODO: Update
         } else {
-            //TODO: Add
+            addAgendaItem(
+                AgendaItem(
+                    0,
+                    agendaItemTitle,
+                    localStart.toEpochSecond(OffsetDateTime.now().offset),
+                    localEnd.toEpochSecond(OffsetDateTime.now().offset),
+                    allDay,
+                    false,
+                    description,
+                    occupancySelection,
+                    OffsetDateTime.now().toEpochSecond(),
+                    false
+                )
+            )
         }
     }
 
     fun openPicker(view: View) {
         when (view.id) {
-            R.id.startDate -> DatePickerFragment { y: Int, m: Int, d: Int -> }.show(
+            R.id.startDate -> DatePickerFragment { y: Int, m: Int, d: Int ->
+                localStart = LocalDateTime.of(y, m, d, localStart.hour, localStart.minute)
+                startDate = localStart.format(dateFormatter)
+            }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "startDate"
             )
-            R.id.startTime -> TimePickerFragment { h: Int, m: Int -> }.show(
+            R.id.startTime -> TimePickerFragment { h: Int, m: Int ->
+                localStart =
+                    LocalDateTime.of(localStart.year, localStart.month, localStart.dayOfMonth, h, m)
+                startTime = localStart.format(timeFormatter)
+            }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "startTime"
             )
-            R.id.endDate -> DatePickerFragment { y: Int, m: Int, d: Int -> }.show(
+            R.id.endDate -> DatePickerFragment { y: Int, m: Int, d: Int ->
+                localEnd = LocalDateTime.of(y, m, d, localEnd.hour, localEnd.minute)
+                endDate = localEnd.format(dateFormatter)
+            }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "endDate"
             )
-            R.id.endTime -> TimePickerFragment { h: Int, m: Int -> }.show(
+            R.id.endTime -> TimePickerFragment { h: Int, m: Int ->
+                localEnd =
+                    LocalDateTime.of(localEnd.year, localEnd.month, localEnd.dayOfMonth, h, m)
+                endTime = localEnd.format(timeFormatter)
+            }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "endTime"
             )
