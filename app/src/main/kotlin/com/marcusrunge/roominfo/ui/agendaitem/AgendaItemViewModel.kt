@@ -108,7 +108,20 @@ class AgendaItemViewModel @Inject constructor(
 
     fun saveAgendaItem() {
         if (id > 0) {
-            //TODO: Update
+            updateAgendaItem(
+                AgendaItem(
+                    id,
+                    agendaItemTitle,
+                    localStart.toEpochSecond(OffsetDateTime.now().offset),
+                    localEnd.toEpochSecond(OffsetDateTime.now().offset),
+                    allDay,
+                    false,
+                    description,
+                    occupancySelection,
+                    OffsetDateTime.now().toEpochSecond(),
+                    false
+                )
+            )
         } else {
             addAgendaItem(
                 AgendaItem(
@@ -163,7 +176,7 @@ class AgendaItemViewModel @Inject constructor(
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {
-        data.agendaItems.insert(
+        id = data.agendaItems.insert(
             com.marcusrunge.roominfo.data.models.AgendaItem(
                 0,
                 agendaItem.title,
