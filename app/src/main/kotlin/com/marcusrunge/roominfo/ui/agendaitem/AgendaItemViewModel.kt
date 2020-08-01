@@ -3,6 +3,7 @@ package com.marcusrunge.roominfo.ui.agendaitem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.marcusrunge.roominfo.R
@@ -204,6 +205,8 @@ class AgendaItemViewModel @Inject constructor(
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+        p0?.findViewById<TextView>(android.R.id.text1)?.textSize = 18F
+        p0?.findViewById<TextView>(android.R.id.text2)?.textSize = 18F
         if (p2 != occupancySelection) occupancySelection = p2
     }
 }
