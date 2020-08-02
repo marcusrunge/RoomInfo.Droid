@@ -8,6 +8,9 @@ interface AgendaItems {
     @Query("SELECT * FROM agendaitem")
     fun getAll(): List<AgendaItem>
 
+    @Query("SELECT * FROM agendaitem WHERE `start`>= :dateTimeFrom AND `end` <= :dateTimeTo")
+    fun getAll(dateTimeFrom: Long, dateTimeTo: Long): List<AgendaItem>
+
     @Query("SELECT * FROM agendaitem WHERE `end`> :dateTime LIMIT 3")
     fun getThree(dateTime: Long): List<AgendaItem>
 

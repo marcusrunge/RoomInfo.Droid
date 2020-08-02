@@ -1,6 +1,7 @@
 package com.marcusrunge.roominfo.ui.calendar
 
 import android.os.Message
+import android.widget.CalendarView
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
@@ -13,13 +14,16 @@ import com.marcusrunge.roominfo.ui.ViewModelBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.OffsetDateTime
 import javax.inject.Inject
 
 class CalendarViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val data: Data,
     private val navController: NavController
-) : ViewModelBase(), OnBackClickedListener {
+) : ViewModelBase(), OnBackClickedListener, CalendarView.OnDateChangeListener {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
 
     @get:Bindable
@@ -32,12 +36,22 @@ class CalendarViewModel @Inject constructor(
 
     init {
         applicationResource.mainActivity?.addOnBackClickedListener(this)
-        loadAgendaItems()
+        loadAgendaItems(
+            LocalDate.now().year,
+            LocalDate.now().monthValue,
+            LocalDate.now().dayOfMonth
+        )
     }
 
-    private fun loadAgendaItems() {
+    private fun loadAgendaItems(year: Int, month: Int, dayOfMonth: Int) {
+        agendaItems.clear()
         CoroutineScope(Dispatchers.IO).launch {
-            data.agendaItems.getAll().forEach {
+            data.agendaItems.getAll(
+                LocalDateTime.of(year, month, dayOfMonth, 0, 0)
+                    .toEpochSecond(OffsetDateTime.now().offset),
+                LocalDateTime.of(year, month, dayOfMonth, 23, 59)
+                    .toEpochSecond(OffsetDateTime.now().offset)
+            ).forEach {
                 agendaItems.add(
                     AgendaItem(
                         it.Id,
@@ -86,11 +100,19 @@ class CalendarViewModel @Inject constructor(
     }
 
     override fun onBackClicked() {
-        loadAgendaItems()
+        loadAgendaItems(
+            LocalDate.now().year,
+            LocalDate.now().monthValue,
+            LocalDate.now().dayOfMonth
+        )
     }
 
     override fun onCleared() {
         applicationResource.mainActivity?.removeOnBackClickedListener(this)
         super.onCleared()
+    }
+
+    override fun onSelectedDayChange(p0: CalendarView, p1: Int, p2: Int, p3: Int) {
+        loadAgendaItems(p1, p2 + 1, p3)
     }
 }
