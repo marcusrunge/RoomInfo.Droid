@@ -28,7 +28,11 @@ class CalendarViewModel @Inject constructor(
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
-        AgendaRecyclerViewAdapter(agendaItems)
+        AgendaRecyclerViewAdapter(agendaItems) {
+            val directions =
+                CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(it)
+            navController.navigate(directions)
+        }
         set(value) {
             field = value
             notifyPropertyChanged(BR.agendaRecyclerViewAdapter)

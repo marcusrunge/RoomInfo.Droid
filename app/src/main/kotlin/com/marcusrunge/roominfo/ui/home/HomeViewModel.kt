@@ -26,7 +26,7 @@ class HomeViewModel @Inject constructor(
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
-        AgendaRecyclerViewAdapter(agendaItems)
+        AgendaRecyclerViewAdapter(agendaItems) {}
         set(value) {
             field = value
             notifyPropertyChanged(BR.agendaRecyclerViewAdapter)

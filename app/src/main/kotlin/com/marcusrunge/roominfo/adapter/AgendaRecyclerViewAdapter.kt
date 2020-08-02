@@ -9,7 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.models.AgendaItem
 
-class AgendaRecyclerViewAdapter(private val agendaItems: MutableList<AgendaItem>) :
+class AgendaRecyclerViewAdapter(
+    private val agendaItems: MutableList<AgendaItem>,
+    private val onClicked: (id: Long) -> Unit
+) :
     RecyclerView.Adapter<AgendaRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -28,6 +31,9 @@ class AgendaRecyclerViewAdapter(private val agendaItems: MutableList<AgendaItem>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val agendaItem = agendaItems[position]
+        holder.itemView.setOnClickListener {
+            onClicked.invoke(agendaItem.id!!)
+        }
         holder.bind(agendaItem)
     }
 
