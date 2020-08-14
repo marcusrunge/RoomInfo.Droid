@@ -10,7 +10,7 @@ apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 30
-    buildToolsVersion '30.0.1'
+    buildToolsVersion '30.0.2'
     defaultConfig {
         applicationId "com.marcusrunge.roominfo"
         minSdkVersion 26
