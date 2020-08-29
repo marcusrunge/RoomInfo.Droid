@@ -13,6 +13,9 @@ import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.ui.ViewModelBase
 import com.marcusrunge.roominfo.ui.datepicker.DatePickerFragment
 import com.marcusrunge.roominfo.ui.timepicker.TimePickerFragment
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
@@ -176,37 +179,41 @@ class AgendaItemViewModel @Inject constructor(
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {
-        id = data.agendaItems.insert(
-            com.marcusrunge.roominfo.data.models.AgendaItem(
-                0,
-                agendaItem.title,
-                agendaItem.start,
-                agendaItem.end,
-                agendaItem.allDayEvent,
-                agendaItem.overridden,
-                agendaItem.description,
-                agendaItem.occupancy,
-                agendaItem.timeStamp,
-                agendaItem.deleted
+        CoroutineScope(Dispatchers.IO).launch {
+            id = data.agendaItems.insert(
+                com.marcusrunge.roominfo.data.models.AgendaItem(
+                    0,
+                    agendaItem.title,
+                    agendaItem.start,
+                    agendaItem.end,
+                    agendaItem.allDayEvent,
+                    agendaItem.overridden,
+                    agendaItem.description,
+                    agendaItem.occupancy,
+                    agendaItem.timeStamp,
+                    agendaItem.deleted
+                )
             )
-        )
+        }
     }
 
     private fun updateAgendaItem(agendaItem: AgendaItem) {
-        data.agendaItems.update(
-            com.marcusrunge.roominfo.data.models.AgendaItem(
-                agendaItem.id!!,
-                agendaItem.title,
-                agendaItem.start,
-                agendaItem.end,
-                agendaItem.allDayEvent,
-                agendaItem.overridden,
-                agendaItem.description,
-                agendaItem.occupancy,
-                agendaItem.timeStamp,
-                agendaItem.deleted
+        CoroutineScope(Dispatchers.IO).launch {
+            data.agendaItems.update(
+                com.marcusrunge.roominfo.data.models.AgendaItem(
+                    agendaItem.id!!,
+                    agendaItem.title,
+                    agendaItem.start,
+                    agendaItem.end,
+                    agendaItem.allDayEvent,
+                    agendaItem.overridden,
+                    agendaItem.description,
+                    agendaItem.occupancy,
+                    agendaItem.timeStamp,
+                    agendaItem.deleted
+                )
             )
-        )
+        }
     }
 
     override fun updateView(obj: Any) {
