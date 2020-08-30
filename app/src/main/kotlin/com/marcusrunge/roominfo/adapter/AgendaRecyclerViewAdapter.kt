@@ -11,7 +11,8 @@ import com.marcusrunge.roominfo.models.AgendaItem
 
 class AgendaRecyclerViewAdapter(
     private val agendaItems: MutableList<AgendaItem>,
-    private val onClicked: (id: Long) -> Unit
+    private val onClicked: (id: Long) -> Unit,
+    private val onDeleted: (position: Int, id: Long) -> Unit
 ) :
     RecyclerView.Adapter<AgendaRecyclerViewAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -35,6 +36,10 @@ class AgendaRecyclerViewAdapter(
             onClicked.invoke(agendaItem.id!!)
         }
         holder.bind(agendaItem)
+    }
+
+    fun deleteItem(position: Int) {
+        onDeleted.invoke(position, agendaItems[position].id!!)
     }
 
     class ViewHolder internal constructor(private val viewDataBinding: ViewDataBinding) :

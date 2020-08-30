@@ -3,6 +3,7 @@ package com.marcusrunge.roominfo.adapter
 import androidx.core.content.ContextCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marcusrunge.roominfo.R
@@ -25,5 +26,11 @@ object RecyclerViewBindingsAdapter {
             )!!
         )
         recyclerView.addItemDecoration(divider)
+    }
+
+    @BindingAdapter("setItemTouchHelper")
+    @JvmStatic
+    fun bindItemTouchHelper(recyclerView: RecyclerView, itemTouchHelper: ItemTouchHelper?) {
+        itemTouchHelper?.attachToRecyclerView(recyclerView)
     }
 }

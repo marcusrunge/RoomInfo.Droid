@@ -5,8 +5,10 @@ import android.widget.CalendarView
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
+import com.marcusrunge.roominfo.implementations.SwipeToDeleteCallback
 import com.marcusrunge.roominfo.interfaces.OnBackClickedListener
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
@@ -28,14 +30,28 @@ class CalendarViewModel @Inject constructor(
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
-        AgendaRecyclerViewAdapter(agendaItems) {
+        AgendaRecyclerViewAdapter(agendaItems, {
             val directions =
                 CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(it)
             navController.navigate(directions)
-        }
+        }, { position, id ->
+            deleteAgendaItem(id)
+            val updateViewMessage = Message()
+            updateViewMessage.what = UPDATE_VIEW
+            updateViewMessage.obj = position
+            handler.sendMessage(updateViewMessage)
+        })
         set(value) {
             field = value
             notifyPropertyChanged(BR.agendaRecyclerViewAdapter)
+        }
+
+    @get:Bindable
+    var itemTouchHelper: ItemTouchHelper? =
+        ItemTouchHelper(SwipeToDeleteCallback(agendaRecyclerViewAdapter))
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.itemTouchHelper)
         }
 
     init {
@@ -89,18 +105,21 @@ class CalendarViewModel @Inject constructor(
         navController.navigate(directions)*/
     }
 
-    fun deleteAgendaItem(id: Long) {
+    private fun deleteAgendaItem(id: Long) {
         for (i in agendaItems.indices) {
             if (agendaItems[i].id == id) {
                 agendaItems.removeAt(i)
                 break
             }
         }
-        data.agendaItems.delete(id.toInt())
+        CoroutineScope(Dispatchers.IO).launch {
+            data.agendaItems.delete(id.toInt())
+        }
     }
 
     override fun updateView(obj: Any) {
-        agendaRecyclerViewAdapter?.notifyDataSetChanged()
+        if (obj is Int) agendaRecyclerViewAdapter?.notifyItemRemoved(obj)
+        else agendaRecyclerViewAdapter?.notifyDataSetChanged()
     }
 
     override fun onBackClicked() {
