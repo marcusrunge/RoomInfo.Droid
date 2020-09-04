@@ -48,7 +48,12 @@ class CalendarViewModel @Inject constructor(
 
     @get:Bindable
     var itemTouchHelper: ItemTouchHelper? =
-        ItemTouchHelper(SwipeToDeleteCallback(agendaRecyclerViewAdapter))
+        ItemTouchHelper(
+            SwipeToDeleteCallback(
+                applicationResource.applicationContext,
+                agendaRecyclerViewAdapter
+            )
+        )
         set(value) {
             field = value
             notifyPropertyChanged(BR.itemTouchHelper)
