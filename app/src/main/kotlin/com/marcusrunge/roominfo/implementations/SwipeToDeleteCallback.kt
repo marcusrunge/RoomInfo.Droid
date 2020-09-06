@@ -2,7 +2,6 @@ package com.marcusrunge.roominfo.implementations
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.View
@@ -29,8 +28,8 @@ class SwipeToDeleteCallback(
     }
 
     init {
-        icon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete) }
-        background = ColorDrawable(Color.RED)
+        icon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete_outline) }
+        background = ColorDrawable(context!!.getColor(R.color.delete))
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
