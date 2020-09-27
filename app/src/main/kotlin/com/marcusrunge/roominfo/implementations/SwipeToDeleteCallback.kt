@@ -2,8 +2,11 @@ package com.marcusrunge.roominfo.implementations
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Rect
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
+import android.text.TextPaint
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -18,6 +21,7 @@ class SwipeToDeleteCallback(
 ) :
     ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT /*or ItemTouchHelper.RIGHT*/) {
     private var icon: Drawable? = null
+    private var delete: String? = null
     private var background: ColorDrawable? = null
     override fun onMove(
         recyclerView: RecyclerView,
@@ -29,6 +33,7 @@ class SwipeToDeleteCallback(
 
     init {
         icon = context?.let { ContextCompat.getDrawable(it, R.drawable.ic_delete_outline) }
+        delete = context?.getString(R.string.delete)
         background = ColorDrawable(context!!.getColor(R.color.delete))
     }
 
@@ -52,6 +57,24 @@ class SwipeToDeleteCallback(
         val iconMargin = (itemView.height - icon!!.intrinsicHeight) / 2
         val iconTop = itemView.top + (itemView.height - icon!!.intrinsicHeight) / 2
         val iconBottom = iconTop + icon!!.intrinsicHeight
+        /*val textPaint = TextPaint()
+        val textWidth: Float
+        val textHeight: Float
+        textPaint.color = Color.WHITE
+        textPaint.isAntiAlias = true
+        textPaint.textSize = 40F
+        val textBounds = Rect()
+        delete?.length?.let { textPaint.getTextBounds(delete, 0, it, textBounds) }
+        textHeight = textBounds.height().toFloat()
+        textWidth = textPaint.measureText(delete)
+        delete?.let {
+            c.drawText(
+                it,
+                viewHolder.itemView.left.toFloat() - textWidth,
+                viewHolder.itemView.top + viewHolder.itemView.height / 2 + textHeight / 2,
+                textPaint
+            )
+        }*/
 
         when {
             dX > 0 -> { // Swiping to the right
