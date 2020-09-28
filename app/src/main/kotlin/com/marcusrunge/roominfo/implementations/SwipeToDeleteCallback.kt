@@ -57,24 +57,17 @@ class SwipeToDeleteCallback(
         val iconMargin = (itemView.height - icon!!.intrinsicHeight) / 2
         val iconTop = itemView.top + (itemView.height - icon!!.intrinsicHeight) / 2
         val iconBottom = iconTop + icon!!.intrinsicHeight
-        /*val textPaint = TextPaint()
+        val metrics = context?.resources?.displayMetrics
+        val textPaint = TextPaint()
         val textWidth: Float
         val textHeight: Float
         textPaint.color = Color.WHITE
         textPaint.isAntiAlias = true
-        textPaint.textSize = 40F
+        textPaint.textSize = 24 * metrics?.density!!
         val textBounds = Rect()
         delete?.length?.let { textPaint.getTextBounds(delete, 0, it, textBounds) }
         textHeight = textBounds.height().toFloat()
         textWidth = textPaint.measureText(delete)
-        delete?.let {
-            c.drawText(
-                it,
-                viewHolder.itemView.left.toFloat() - textWidth,
-                viewHolder.itemView.top + viewHolder.itemView.height / 2 + textHeight / 2,
-                textPaint
-            )
-        }*/
 
         when {
             dX > 0 -> { // Swiping to the right
@@ -103,5 +96,13 @@ class SwipeToDeleteCallback(
 
         background!!.draw(c)
         icon!!.draw(c)
+        delete?.let {
+            c.drawText(
+                it,
+                icon!!.bounds.left - textWidth - 16 * metrics.density,
+                viewHolder.itemView.height - ((viewHolder.itemView.height - textHeight) / 2),
+                textPaint
+            )
+        }
     }
 }
