@@ -63,6 +63,7 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
     implementation project(path: ':data')
     implementation project(path: ':sockets')
+    implementation project(path: ':preferences')
     kapt "com.android.databinding:compiler:$compiler_version"
     kapt "android.arch.lifecycle:common-java8:$lifecycle_version"
     implementation "com.google.dagger:dagger:$dagger_version"
@@ -78,4 +79,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     testImplementation "androidx.room:room-testing:$room_version"
+    implementation 'androidx.preference:preference:1.1.1'
 }

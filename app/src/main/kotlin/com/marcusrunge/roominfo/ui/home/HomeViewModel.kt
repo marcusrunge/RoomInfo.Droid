@@ -5,10 +5,10 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
-import com.marcusrunge.roominfo.interfaces.SettingsService
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.models.TimeSpanItem
+import com.marcusrunge.roominfo.preferences.interfaces.Preferences
 import com.marcusrunge.roominfo.ui.ViewModelBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
-    private val settingsService: SettingsService,
+    private val preferences: Preferences,
     private val data: Data
 ) : ViewModelBase() {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()

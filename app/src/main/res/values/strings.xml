@@ -9,6 +9,13 @@
     <string name="descriptionTitle">Description:</string>
     <string name="allDay">All Day</string>
     <string name="delete">Delete</string>
+    <string name="company">Company</string>
+    <string name="roomDesignator">Room Designator</string>
+    <string name="general">General</string>
+    <string name="logo">Logo</string>
+    <string name="network">Network</string>
+    <string name="udpPort">UDP Port</string>
+    <string name="tcpPort">TCP Port</string>
     <string-array name="occupancy">
         <item>FREE</item>
         <item>PRESENT</item>

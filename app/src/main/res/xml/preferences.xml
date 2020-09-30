@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory android:title="@string/general">
+        <EditTextPreference
+            app:key="companyName"
+            app:title="@string/company"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="roomDesignator"
+            app:title="@string/roomDesignator"
+            app:useSimpleSummaryProvider="true" />
+        <Preference
+            android:key="logoPicker"
+            android:title="@string/logo" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/network">
+        <EditTextPreference
+            app:key="udpPort"
+            app:title="@string/udpPort"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="tcpPort"
+            app:title="@string/tcpPort"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+</PreferenceScreen>
