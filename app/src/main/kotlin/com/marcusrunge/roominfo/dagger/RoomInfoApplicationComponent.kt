@@ -5,7 +5,6 @@ import com.marcusrunge.roominfo.dagger.applicationresource.ApplicationResourceMo
 import com.marcusrunge.roominfo.dagger.data.DataModule
 import com.marcusrunge.roominfo.dagger.navigation.NavigationModule
 import com.marcusrunge.roominfo.dagger.preferences.PreferencesModule
-import com.marcusrunge.roominfo.dagger.settingsservice.SettingsServiceModule
 import com.marcusrunge.roominfo.dagger.sockets.SocketsModule
 import com.marcusrunge.roominfo.dagger.viewmodel.ViewModelFactoryModule
 import com.marcusrunge.roominfo.dagger.viewmodel.ViewModelModule
@@ -21,7 +20,6 @@ import javax.inject.Singleton
         FragmentModule::class,
         ViewModelFactoryModule::class,
         ViewModelModule::class,
-        SettingsServiceModule::class,
         DataModule::class,
         SocketsModule::class,
         ApplicationResourceModule::class,
