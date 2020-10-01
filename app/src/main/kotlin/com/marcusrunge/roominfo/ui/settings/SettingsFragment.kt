@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
-import android.provider.DocumentsContract
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.marcusrunge.roominfo.MainActivity
@@ -15,7 +14,6 @@ import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.interfaces.OnFileSelectedListener
 import com.marcusrunge.roominfo.preferences.interfaces.Preferences
 import dagger.android.support.AndroidSupportInjection
-import java.io.File
 import java.io.InputStream
 import javax.inject.Inject
 
