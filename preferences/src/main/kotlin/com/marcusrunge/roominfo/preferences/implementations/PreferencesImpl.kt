@@ -17,6 +17,9 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
         get() = sharedPreferences.getString("udpPort", null)
     override val tcpPort: String?
         get() = sharedPreferences.getString("tcpPort", null)
-    override val logoFilePath: String?
+    override var logoFilePath: String?
         get() = sharedPreferences.getString("logoFilePath", null)
+        set(value) {
+            sharedPreferences.edit()?.putString("logoFilePath", value)?.apply()
+        }
 }

@@ -5,5 +5,5 @@ interface Preferences {
     val roomDesignator: String?
     val udpPort: String?
     val tcpPort: String?
-    val logoFilePath: String?
+    var logoFilePath: String?
 }
