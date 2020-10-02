@@ -1,3 +1,4 @@
+include ':time'
 include ':preferences'
 include ':sockets'
 include ':data'

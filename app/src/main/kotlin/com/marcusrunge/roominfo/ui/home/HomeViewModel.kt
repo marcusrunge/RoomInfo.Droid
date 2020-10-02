@@ -9,6 +9,7 @@ import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.models.TimeSpanItem
 import com.marcusrunge.roominfo.preferences.interfaces.Preferences
+import com.marcusrunge.roominfo.time.interfaces.Time
 import com.marcusrunge.roominfo.ui.ViewModelBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val preferences: Preferences,
-    private val data: Data
+    private val data: Data,
+    private val time: Time
 ) : ViewModelBase() {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
