@@ -32,6 +32,34 @@ class HomeViewModel @Inject constructor(
             notifyPropertyChanged(BR.agendaRecyclerViewAdapter)
         }
 
+    @get:Bindable
+    var logoFilePath: String? = preferences.logoFilePath
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.logoFilePath)
+        }
+
+    @get:Bindable
+    var companyName: String? = preferences.companyName
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.companyName)
+        }
+
+    @get:Bindable
+    var roomName: String? = preferences.roomName
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.roomName)
+        }
+
+    @get:Bindable
+    var roomNumber: String? = preferences.roomNumber
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.roomNumber)
+        }
+
     init {
         loadItems()
     }

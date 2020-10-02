@@ -11,8 +11,10 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
 
     override val companyName: String?
         get() = sharedPreferences.getString("companyName", null)
-    override val roomDesignator: String?
-        get() = sharedPreferences.getString("roomDesignator", null)
+    override val roomName: String?
+        get() = sharedPreferences.getString("roomName", null)
+    override val roomNumber: String?
+        get() = sharedPreferences.getString("roomNumber", null)
     override val udpPort: String?
         get() = sharedPreferences.getString("udpPort", null)
     override val tcpPort: String?

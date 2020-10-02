@@ -7,8 +7,12 @@
             app:title="@string/company"
             app:useSimpleSummaryProvider="true" />
         <EditTextPreference
-            app:key="roomDesignator"
-            app:title="@string/roomDesignator"
+            app:key="roomName"
+            app:title="@string/roomName"
+            app:useSimpleSummaryProvider="true" />
+        <EditTextPreference
+            app:key="roomNumber"
+            app:title="@string/roomNumber"
             app:useSimpleSummaryProvider="true" />
         <Preference
             android:key="logoPicker"
