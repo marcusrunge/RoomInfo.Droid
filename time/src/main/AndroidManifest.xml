@@ -1,4 +1,16 @@
-<manifest package="com.marcusrunge.roominfo">
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.marcusrunge.roominfo">
 
-    /
+    <application>
+        <receiver
+            android:name=".time.receiver.TimeTickReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_TIME_TICK" />
+            </intent-filter>
+        </receiver>
+    </application>
+
 </manifest>

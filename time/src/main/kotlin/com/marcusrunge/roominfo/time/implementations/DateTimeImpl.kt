@@ -4,8 +4,16 @@ import com.marcusrunge.roominfo.time.bases.TimeBase
 import com.marcusrunge.roominfo.time.interfaces.DateTime
 
 internal class DateTimeImpl(private val timeBase: TimeBase) : DateTime {
-    override val time: String?
-        get() = TODO("Not yet implemented")
-    override val date: String?
-        get() = TODO("Not yet implemented")
+    override var timeUnit: Unit? = null
+        set(value) {
+            if (value == null && field != null) {
+                timeBase.removeOnTimeTickListener { field }
+            } else field = timeBase.addOnTimeTickUnit { value }
+        }
+    override var dateUnit: Unit? = null
+        set(value) {
+            if (value == null && field != null) {
+                timeBase.removeOnTimeTickListener { field }
+            } else field = timeBase.addOnTimeTickUnit { value }
+        }
 }
