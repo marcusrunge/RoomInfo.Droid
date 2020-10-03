@@ -36,7 +36,7 @@ class AgendaItemViewModel @Inject constructor(
     @get:Bindable
     var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
         applicationResource.applicationContext!!,
-        R.array.occupancy,
+        R.array.occupancy_states,
         android.R.layout.simple_spinner_item
     )
         set(value) {

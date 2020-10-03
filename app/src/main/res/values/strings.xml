@@ -18,7 +18,7 @@
     <string name="tcpPort">TCP Port</string>
     <string name="selectFile">Select a file</string>
     <string name="roomNumber">Room Number</string>
-    <string-array name="occupancy">
+    <string-array name="occupancy_states">
         <item>FREE</item>
         <item>PRESENT</item>
         <item>ABSENT</item>
@@ -26,5 +26,14 @@
         <item>OCCUPIED</item>
         <item>LOCKED</item>
         <item>HOMEOFFICE</item>
+    </string-array>
+    <string-array name="occupancy_icons">
+        <item>✓</item>
+        <item>★</item>
+        <item>➔</item>
+        <item>⧖</item>
+        <item>⛛</item>
+        <item>🗙</item>
+        <item>⌂</item>
     </string-array>
 </resources>
