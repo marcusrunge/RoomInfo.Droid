@@ -13,9 +13,9 @@ import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_OC
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_PRESENT
 
 object OccupancyStateBindingsAdapter {
-    @BindingAdapter("setOccupancyState")
+    @BindingAdapter("state", "transparent")
     @JvmStatic
-    fun bindOccupancyState(view: View?, state: Int?) {
+    fun bindOccupancyState(view: View?, state: Int?, transparent: Boolean?) {
         if (view != null && state != null) {
             var background = 0
             var transparentBackground = 0
@@ -108,8 +108,14 @@ object OccupancyStateBindingsAdapter {
                         view.context.resources.getColor(R.color.homeForeground, view.context.theme)
                 }
             }
-            view.setBackgroundColor(background)
-            if(view.javaClass==TextView::class)(view as TextView).setTextColor(foreground)
+
+            if (view is TextView) view.setTextColor(foreground)
+            else {
+                if (transparent != null && transparent) view.setBackgroundColor(
+                    transparentBackground
+                )
+                else view.setBackgroundColor(background)
+            }
         }
     }
 }
