@@ -1,8 +1,12 @@
 package com.marcusrunge.roominfo.ui.home
 
 import android.os.Message
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
+import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
@@ -22,14 +26,25 @@ class HomeViewModel @Inject constructor(
     private val preferences: Preferences,
     private val data: Data,
     private val time: Time
-) : ViewModelBase() {
+) : ViewModelBase(), AdapterView.OnItemSelectedListener {
     private companion object {
-        val FORMATTED_TIME = 1
-        val FORMATTED_DATE = 2
+        const val FORMATTED_TIME = 1
+        const val FORMATTED_DATE = 2
     }
 
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
+
+    @get:Bindable
+    var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
+        applicationResource.applicationContext!!,
+        R.array.occupancy_states,
+        android.R.layout.simple_spinner_item
+    )
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.occupancyAdapter)
+        }
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
@@ -82,10 +97,13 @@ class HomeViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var occupancyState: Int? = preferences.occupancyState
+    var occupancySelection: Int? = preferences.occupancyState
         set(value) {
-            field = value
-            notifyPropertyChanged(BR.occupancyState)
+            if (field != value) {
+                field = value
+                preferences.occupancyState = value
+                notifyPropertyChanged(BR.occupancySelection)
+            }
         }
 
     init {
@@ -149,5 +167,13 @@ class HomeViewModel @Inject constructor(
             FORMATTED_TIME -> formattedTime = inputMessage.obj as String
             FORMATTED_DATE -> formattedDate = inputMessage.obj as String
         }
+    }
+
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        if (position != occupancySelection) occupancySelection = position
+    }
+
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }

@@ -4,14 +4,13 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
-import com.marcusrunge.roominfo.R
 
 object SpinnerViewBindingsAdapter {
 
     @BindingAdapter("setArrayAdapter")
     @JvmStatic
     fun bindArrayAdapter(spinner: Spinner, adapter: ArrayAdapter<CharSequence>?) {
-        adapter?.setDropDownViewResource(R.layout.custom_simple_spinner_dropdown_item)
+        adapter?.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
     }
 
