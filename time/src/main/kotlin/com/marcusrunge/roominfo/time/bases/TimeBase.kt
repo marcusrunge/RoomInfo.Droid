@@ -50,10 +50,12 @@ internal abstract class TimeBase(val context: Context) : Time, TimeTickReceiver.
 
     fun addOnTimeTickUnit(onTimeTickUnit: ((String?) -> Unit)?) {
         onTimeTickUnits.add(WeakReference(onTimeTickUnit))
+        invokeOnTimeTickUnits(System.currentTimeMillis())
     }
 
     fun addOnDateTickUnit(onDateTickUnit: ((String?) -> Unit)?) {
         onDateTickUnits.add(WeakReference(onDateTickUnit))
+        invokeOnTimeTickUnits(System.currentTimeMillis())
     }
 
     fun removeOnTimeTickListener(onTimeTickUnit: ((String?) -> Unit)?) {

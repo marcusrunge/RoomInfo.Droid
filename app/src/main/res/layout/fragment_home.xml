@@ -26,8 +26,10 @@
                 android:layout_width="@dimen/doubleActionBarSize"
                 android:layout_height="@dimen/doubleActionBarSize"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginVertical="@dimen/activity_vertical_margin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:setFilePath="@{viewmodel.logoFilePath}" />
 
             <TextView
@@ -38,15 +40,18 @@
                 android:text="@{viewmodel.companyName}"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/logo"
-                app:layout_constraintTop_toTopOf="@id/logo" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.formattedTime}"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -55,7 +60,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.formattedDate}"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
