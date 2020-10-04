@@ -1,5 +1,6 @@
 package com.marcusrunge.roominfo.ui.agendaitem
 
+import android.os.Message
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -216,7 +217,7 @@ class AgendaItemViewModel @Inject constructor(
         }
     }
 
-    override fun updateView(obj: Any) {
+    override fun updateView(inputMessage: Message) {
         //TODO("Not yet implemented")
     }
 

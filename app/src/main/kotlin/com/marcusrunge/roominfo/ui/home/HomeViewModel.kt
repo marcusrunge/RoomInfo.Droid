@@ -23,6 +23,11 @@ class HomeViewModel @Inject constructor(
     private val data: Data,
     private val time: Time
 ) : ViewModelBase() {
+    private companion object {
+        val FORMATTED_TIME = 1
+        val FORMATTED_DATE = 2
+    }
+
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
 
@@ -62,8 +67,36 @@ class HomeViewModel @Inject constructor(
             notifyPropertyChanged(BR.roomNumber)
         }
 
+    @get:Bindable
+    var formattedTime: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.formattedTime)
+        }
+
+    @get:Bindable
+    var formattedDate: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.formattedDate)
+        }
+
     init {
         loadItems()
+        time.dateTime.timeUnit = {
+            val message = Message()
+            message.what = UPDATE_VIEW
+            message.arg1 = FORMATTED_TIME
+            message.obj = it
+            handler.sendMessage(message)
+        }
+        time.dateTime.dateUnit = {
+            val message = Message()
+            message.what = UPDATE_VIEW
+            message.arg1 = FORMATTED_DATE
+            message.obj = it
+            handler.sendMessage(message)
+        }
     }
 
     private fun loadItems() {
@@ -104,7 +137,10 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    override fun updateView(obj: Any) {
-
+    override fun updateView(inputMessage: Message) {
+        when (inputMessage.arg1) {
+            FORMATTED_TIME -> formattedTime = inputMessage.obj as String
+            FORMATTED_DATE -> formattedDate = inputMessage.obj as String
+        }
     }
 }

@@ -122,8 +122,8 @@ class CalendarViewModel @Inject constructor(
         }
     }
 
-    override fun updateView(obj: Any) {
-        if (obj is Int) agendaRecyclerViewAdapter?.notifyItemRemoved(obj)
+    override fun updateView(inputMessage: Message) {
+        if (inputMessage.obj is Int) agendaRecyclerViewAdapter?.notifyItemRemoved(inputMessage.obj as Int)
         else agendaRecyclerViewAdapter?.notifyDataSetChanged()
     }
 

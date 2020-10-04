@@ -16,12 +16,12 @@ abstract class ViewModelBase : ViewModel(), Observable {
     protected val handler: Handler = object : Handler(Looper.getMainLooper()) {
         override fun handleMessage(inputMessage: Message) {
             when (inputMessage.what) {
-                UPDATE_VIEW -> updateView(inputMessage.obj)
+                UPDATE_VIEW -> updateView(inputMessage)
             }
         }
     }
 
-    abstract fun updateView(obj: Any)
+    abstract fun updateView(inputMessage: Message)
 
     override fun addOnPropertyChangedCallback(callback: Observable.OnPropertyChangedCallback) {
         propertyChangeRegistry.add(callback)

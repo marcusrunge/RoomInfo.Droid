@@ -1,6 +1,7 @@
 package com.marcusrunge.roominfo.ui.main
 
 import android.os.Bundle
+import android.os.Message
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import com.marcusrunge.roominfo.models.ApplicationResource
@@ -18,7 +19,7 @@ class MainViewModel @Inject constructor(private val applicationResource: Applica
         //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun updateView(obj: Any) {
+    override fun updateView(inputMessage: Message) {
         TODO("Not yet implemented")
     }
 }
