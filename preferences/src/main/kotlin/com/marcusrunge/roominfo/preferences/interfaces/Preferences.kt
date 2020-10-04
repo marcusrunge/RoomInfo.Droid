@@ -7,4 +7,5 @@ interface Preferences {
     val udpPort: String?
     val tcpPort: String?
     var logoFilePath: String?
+    var occupancyState: Int?
 }

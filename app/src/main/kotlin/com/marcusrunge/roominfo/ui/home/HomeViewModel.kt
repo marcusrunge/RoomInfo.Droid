@@ -81,6 +81,13 @@ class HomeViewModel @Inject constructor(
             notifyPropertyChanged(BR.formattedDate)
         }
 
+    @get:Bindable
+    var occupancyState: Int? = preferences.occupancyState
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.occupancyState)
+        }
+
     init {
         loadItems()
         time.dateTime.timeUnit = {

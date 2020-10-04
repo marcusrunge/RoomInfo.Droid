@@ -16,6 +16,13 @@ class RoomInfoApplication : Application(), HasAndroidInjector,
     lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     companion object {
+        const val OCCUPANCY_STATE_FREE = 0
+        const val OCCUPANCY_STATE_PRESENT = 1
+        const val OCCUPANCY_STATE_ABSENT = 2
+        const val OCCUPANCY_STATE_BUSY = 3
+        const val OCCUPANCY_STATE_OCCUPIED = 4
+        const val OCCUPANCY_STATE_LOCKED = 5
+        const val OCCUPANCY_STATE_HOMEOFFICE = 6
         lateinit var mainActivity: MainActivity
         val applicationResource = ApplicationResource()
     }
