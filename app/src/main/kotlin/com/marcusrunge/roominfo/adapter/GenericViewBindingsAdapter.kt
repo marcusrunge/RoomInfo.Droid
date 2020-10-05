@@ -61,13 +61,13 @@ object OccupancyStateBindingsAdapter {
                 }
                 OCCUPANCY_STATE_BUSY -> {
                     background =
-                        view.context.resources.getColor(R.color.busyForeground, view.context.theme)
+                        view.context.resources.getColor(R.color.busyBackground, view.context.theme)
                     transparentBackground = view.context.resources.getColor(
                         R.color.busyTransparentBackground,
                         view.context.theme
                     )
                     foreground =
-                        view.context.resources.getColor(R.color.freeForeground, view.context.theme)
+                        view.context.resources.getColor(R.color.busyForeground, view.context.theme)
                 }
                 OCCUPANCY_STATE_OCCUPIED -> {
                     background = view.context.resources.getColor(

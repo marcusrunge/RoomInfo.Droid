@@ -101,7 +101,6 @@ class HomeViewModel @Inject constructor(
         set(value) {
             if (field != value) {
                 field = value
-                preferences.occupancy = value
                 notifyPropertyChanged(BR.occupancySelection)
             }
         }
@@ -170,7 +169,10 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (position != occupancySelection) occupancySelection = position
+        if (position != occupancySelection) {
+            occupancySelection = position
+            preferences.occupancy=occupancySelection
+        }
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {

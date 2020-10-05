@@ -30,5 +30,5 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
             sharedPreferences.edit()?.putInt("occupancy", value!!)?.apply()
         }
     override val standardOccupancy: Int?
-        get() = sharedPreferences.getInt("standardOccupancy", 0)
+        get() = Integer.parseInt(sharedPreferences.getString("standardOccupancy", "0")!!)
 }

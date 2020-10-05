@@ -17,6 +17,12 @@
         <Preference
             android:key="logoPicker"
             android:title="@string/logo" />
+        <DropDownPreference
+            android:key="standardOccupancy"
+            android:title="@string/standardOccupancy"
+            android:entries="@array/occupancy_states"
+            android:entryValues="@array/occupancy_state_values"
+            app:useSimpleSummaryProvider="true"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/network">
         <EditTextPreference

@@ -137,6 +137,7 @@
                 android:text="@string/reset"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
+                android:onClick="@{()->viewmodel.reset()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

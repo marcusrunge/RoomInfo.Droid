@@ -19,6 +19,7 @@
     <string name="selectFile">Select a file</string>
     <string name="roomNumber">Room Number</string>
     <string name="reset">Reset</string>
+    <string name="standardOccupancy">Standard Occupancy</string>
     <string-array name="occupancy_states">
         <item>FREE</item>
         <item>PRESENT</item>
@@ -27,6 +28,15 @@
         <item>OCCUPIED</item>
         <item>LOCKED</item>
         <item>HOMEOFFICE</item>
+    </string-array>
+    <string-array name="occupancy_state_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
     </string-array>
     <string-array name="occupancy_icons">
         <item>✓</item>
