@@ -24,9 +24,11 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
         set(value) {
             sharedPreferences.edit()?.putString("logoFilePath", value)?.apply()
         }
-    override var occupancyState: Int?
-        get() = sharedPreferences.getInt("occupancyState", 0)
+    override var occupancy: Int?
+        get() = sharedPreferences.getInt("occupancy", 0)
         set(value) {
-            sharedPreferences.edit()?.putInt("occupancyState", value!!)?.apply()
+            sharedPreferences.edit()?.putInt("occupancy", value!!)?.apply()
         }
+    override val standardOccupancy: Int?
+        get() = sharedPreferences.getInt("standardOccupancy", 0)
 }

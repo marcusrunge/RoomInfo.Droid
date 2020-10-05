@@ -97,11 +97,11 @@ class HomeViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var occupancySelection: Int? = preferences.occupancyState
+    var occupancySelection: Int? = preferences.occupancy
         set(value) {
             if (field != value) {
                 field = value
-                preferences.occupancyState = value
+                preferences.occupancy = value
                 notifyPropertyChanged(BR.occupancySelection)
             }
         }
@@ -175,5 +175,9 @@ class HomeViewModel @Inject constructor(
 
     override fun onNothingSelected(parent: AdapterView<*>?) {
         TODO("Not yet implemented")
+    }
+
+    fun reset() {
+        occupancySelection = preferences.standardOccupancy
     }
 }

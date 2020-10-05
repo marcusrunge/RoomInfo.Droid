@@ -109,12 +109,14 @@ object OccupancyStateBindingsAdapter {
                 }
             }
 
-            if (view is TextView) view.setTextColor(foreground)
-            else {
-                if (transparent != null && transparent) view.setBackgroundColor(
-                    transparentBackground
-                )
-                else view.setBackgroundColor(background)
+            when (view) {
+                is TextView -> view.setTextColor(foreground)
+                else -> {
+                    if (transparent != null && transparent) view.setBackgroundColor(
+                        transparentBackground
+                    )
+                    else view.setBackgroundColor(background)
+                }
             }
         }
     }
