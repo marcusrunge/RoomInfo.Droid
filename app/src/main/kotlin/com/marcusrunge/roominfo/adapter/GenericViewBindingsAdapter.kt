@@ -1,7 +1,10 @@
 package com.marcusrunge.roominfo.adapter
 
+import android.content.res.ColorStateList
 import android.view.View
+import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_ABSENT
@@ -109,14 +112,22 @@ object GenericViewBindingsAdapter {
                 }
             }
 
-            when (view) {
-                is TextView -> view.setTextColor(foreground)
-                else -> {
-                    if (transparent != null && transparent) view.setBackgroundColor(
-                        transparentBackground
-                    )
-                    else view.setBackgroundColor(background)
+            when {
+                view is AppCompatButton -> {
+                    view.setTextColor(foreground)
+                    view.backgroundTintList = ColorStateList.valueOf(background)
                 }
+                view is Spinner -> {
+                    view.setBackgroundColor(background)
+                    if (view.selectedView is TextView) (view.selectedView as TextView).setTextColor(
+                        foreground
+                    )
+                }
+                view is TextView -> view.setTextColor(foreground)
+                transparent != null && transparent -> view.setBackgroundColor(
+                    transparentBackground
+                )
+                else -> view.setBackgroundColor(background)
             }
         }
     }
