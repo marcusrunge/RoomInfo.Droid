@@ -34,6 +34,7 @@ class HomeViewModel @Inject constructor(
 
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
+    private var isSpinnerInitialized = false
 
     @get:Bindable
     var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
@@ -97,7 +98,7 @@ class HomeViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var occupancySelection: Int? = preferences.occupancy
+    var occupancySelection: Int? = null
         set(value) {
             if (field != value) {
                 field = value
@@ -169,9 +170,14 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        if (position != occupancySelection) {
-            occupancySelection = position
-            preferences.occupancy=occupancySelection
+        if (isSpinnerInitialized) {
+            if (position != occupancySelection) {
+                occupancySelection = position
+                preferences.occupancy = position
+            }
+        } else {
+            occupancySelection = preferences.occupancy
+            isSpinnerInitialized = true
         }
     }
 

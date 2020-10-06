@@ -12,7 +12,7 @@ import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_LO
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_OCCUPIED
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_PRESENT
 
-object OccupancyStateBindingsAdapter {
+object GenericViewBindingsAdapter {
     @BindingAdapter("state", "transparent")
     @JvmStatic
     fun bindOccupancyState(view: View?, state: Int?, transparent: Boolean?) {
