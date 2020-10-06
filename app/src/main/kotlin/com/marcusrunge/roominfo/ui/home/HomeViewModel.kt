@@ -171,10 +171,9 @@ class HomeViewModel @Inject constructor(
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         if (isSpinnerInitialized) {
-            if (position != occupancySelection) {
-                occupancySelection = position
+                occupancySelection = -1
+            occupancySelection = position
                 preferences.occupancy = position
-            }
         } else {
             occupancySelection = preferences.occupancy
             isSpinnerInitialized = true
