@@ -23,11 +23,13 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
         get() = sharedPreferences.getString("logoFilePath", null)
         set(value) {
             sharedPreferences.edit()?.putString("logoFilePath", value)?.apply()
+            invokeOnPreferenceChangedListener(Pair<String, Any?>("logoFilePath", value))
         }
     override var occupancy: Int?
         get() = sharedPreferences.getInt("occupancy", 0)
         set(value) {
             sharedPreferences.edit()?.putInt("occupancy", value!!)?.apply()
+            invokeOnPreferenceChangedListener(Pair<String, Any?>("occupancy", value))
         }
     override val standardOccupancy: Int?
         get() = Integer.parseInt(sharedPreferences.getString("standardOccupancy", "0")!!)

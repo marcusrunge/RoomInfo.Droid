@@ -11,7 +11,7 @@ internal class DateTimeImpl(private val timeBase: TimeBase) : DateTime {
             if (value == null) timeBase.removeOnTimeTickListener(_timeUnit)
             else {
                 _timeUnit = value
-                timeBase.addOnTimeTickUnit(_timeUnit)
+                timeBase.addOnTimeTickListener(_timeUnit)
             }
         }
 
@@ -22,7 +22,7 @@ internal class DateTimeImpl(private val timeBase: TimeBase) : DateTime {
             if (value == null) timeBase.removeOnDateTickListener(_dateUnit)
             else {
                 _dateUnit = value
-                timeBase.addOnDateTickUnit(_dateUnit)
+                timeBase.addOnDateTickListener(_dateUnit)
             }
         }
 }

@@ -9,4 +9,6 @@ interface Preferences {
     var logoFilePath: String?
     var occupancy: Int?
     val standardOccupancy: Int?
+    fun addOnPreferenceChangedListener(onTimeTickListener: ((Pair<String, Any?>) -> Unit)?)
+    fun removeOnPreferenceChangedListener(onPreferenceChangedListener: ((Pair<String, Any?>) -> Unit)?)
 }

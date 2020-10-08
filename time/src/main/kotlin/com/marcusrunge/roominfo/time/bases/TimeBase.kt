@@ -10,15 +10,17 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 internal abstract class TimeBase(val context: Context) : Time, TimeTickReceiver.OnTimeTickListener {
-    private val onTimeTickUnits: MutableList<WeakReference<((String?) -> Unit)?>> = mutableListOf()
-    private val onDateTickUnits: MutableList<WeakReference<((String?) -> Unit)?>> = mutableListOf()
+    private val onTimeTickListener: MutableList<WeakReference<((String?) -> Unit)?>> =
+        mutableListOf()
+    private val onDateTickListener: MutableList<WeakReference<((String?) -> Unit)?>> =
+        mutableListOf()
     private val timeTickReceiver: TimeTickReceiver = TimeTickReceiver()
     private val calendar = Calendar.getInstance()
     private val simpleTimeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
     private val simpleDateFormat = SimpleDateFormat("dd. MMMM YYYY", Locale.getDefault())
 
     override fun onTimeTick(currentTimeMillis: Long) {
-        invokeOnTimeTickUnits(currentTimeMillis)
+        invokeOnTimeTickListener(currentTimeMillis)
     }
 
     fun initTimeTick() {
@@ -32,15 +34,15 @@ internal abstract class TimeBase(val context: Context) : Time, TimeTickReceiver.
         timeTickReceiver.removeOnTimeTickListener(this)
     }
 
-    private fun invokeOnTimeTickUnits(currentTimeMillis: Long) {
+    private fun invokeOnTimeTickListener(currentTimeMillis: Long) {
         calendar.timeInMillis = currentTimeMillis
-        for (weakRef in onTimeTickUnits) {
+        for (weakRef in onTimeTickListener) {
             try {
                 weakRef.get()?.invoke(simpleTimeFormat.format(calendar.time))
             } catch (e: Exception) {
             }
         }
-        for (weakRef in onDateTickUnits) {
+        for (weakRef in onDateTickListener) {
             try {
                 weakRef.get()?.invoke(simpleDateFormat.format(calendar.time))
             } catch (e: Exception) {
@@ -48,33 +50,33 @@ internal abstract class TimeBase(val context: Context) : Time, TimeTickReceiver.
         }
     }
 
-    fun addOnTimeTickUnit(onTimeTickUnit: ((String?) -> Unit)?) {
-        onTimeTickUnits.add(WeakReference(onTimeTickUnit))
-        invokeOnTimeTickUnits(System.currentTimeMillis())
+    fun addOnTimeTickListener(onTimeTickListener: ((String?) -> Unit)?) {
+        this.onTimeTickListener.add(WeakReference(onTimeTickListener))
+        invokeOnTimeTickListener(System.currentTimeMillis())
     }
 
-    fun addOnDateTickUnit(onDateTickUnit: ((String?) -> Unit)?) {
-        onDateTickUnits.add(WeakReference(onDateTickUnit))
-        invokeOnTimeTickUnits(System.currentTimeMillis())
+    fun addOnDateTickListener(onDateTickListener: ((String?) -> Unit)?) {
+        this.onDateTickListener.add(WeakReference(onDateTickListener))
+        invokeOnTimeTickListener(System.currentTimeMillis())
     }
 
-    fun removeOnTimeTickListener(onTimeTickUnit: ((String?) -> Unit)?) {
+    fun removeOnTimeTickListener(onTimeTickListener: ((String?) -> Unit)?) {
         val iterator: MutableIterator<WeakReference<((String?) -> Unit)?>> =
-            onTimeTickUnits.iterator()
+            this.onTimeTickListener.iterator()
         while (iterator.hasNext()) {
             val weakRef: WeakReference<((String?) -> Unit)?> = iterator.next()
-            if (weakRef.get() === onTimeTickUnit) {
+            if (weakRef.get() === onTimeTickListener) {
                 iterator.remove()
             }
         }
     }
 
-    fun removeOnDateTickListener(onTimeTickUnit: ((String?) -> Unit)?) {
+    fun removeOnDateTickListener(onTimeTickListener: ((String?) -> Unit)?) {
         val iterator: MutableIterator<WeakReference<((String?) -> Unit)?>> =
-            onDateTickUnits.iterator()
+            onDateTickListener.iterator()
         while (iterator.hasNext()) {
             val weakRef: WeakReference<((String?) -> Unit)?> = iterator.next()
-            if (weakRef.get() === onTimeTickUnit) {
+            if (weakRef.get() === onTimeTickListener) {
                 iterator.remove()
             }
         }
