@@ -29,6 +29,15 @@
         <item>LOCKED</item>
         <item>HOMEOFFICE</item>
     </string-array>
+    <string-array name="occupancy_titles">
+        <item>F R E E</item>
+        <item>P R E S E N T</item>
+        <item>A B S E N T</item>
+        <item>B U S Y</item>
+        <item>O C C U P I E D</item>
+        <item>L O C K E D</item>
+        <item>H O M E O F F I C E</item>
+    </string-array>
     <string-array name="occupancy_state_values">
         <item>0</item>
         <item>1</item>
@@ -44,7 +53,7 @@
         <item>➔</item>
         <item>⧖</item>
         <item>⛛</item>
-        <item>🗙</item>
+        <item>⨯</item>
         <item>⌂</item>
     </string-array>
 </resources>

@@ -84,6 +84,20 @@ class HomeViewModel @Inject constructor(
         }
 
     @get:Bindable
+    var occupancyTitle: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.occupancyTitle)
+        }
+
+    @get:Bindable
+    var occupancyIcon: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.occupancyIcon)
+        }
+
+    @get:Bindable
     var formattedTime: String? = null
         set(value) {
             field = value
@@ -102,6 +116,13 @@ class HomeViewModel @Inject constructor(
         set(value) {
             if (field != value) {
                 field = value
+                if(!(value!=null && (value<0 || value > applicationResource.applicationContext?.resources?.getStringArray(R.array.occupancy_icons)?.size!!))) {
+                    occupancyIcon =
+                        applicationResource.applicationContext?.resources?.getStringArray(R.array.occupancy_icons)
+                            ?.get(value!!)
+                    occupancyTitle=applicationResource.applicationContext?.resources?.getStringArray(R.array.occupancy_titles)
+                        ?.get(value!!)
+                }
                 notifyPropertyChanged(BR.occupancySelection)
             }
         }

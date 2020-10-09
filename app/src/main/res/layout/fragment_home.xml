@@ -14,7 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?android:attr/actionBarSize">
-
+<androidx.constraintlayout.widget.Guideline
+    android:id="@+id/seventyFivePercentGuideline"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:orientation="horizontal"
+    app:layout_constraintGuide_percent="0.67"/>
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topPanel"
             android:layout_width="match_parent"
@@ -80,32 +85,46 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/midPanel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{false}"
-            app:layout_constraintTop_toBottomOf="@id/topPanel">
-
+            app:layout_constraintTop_toBottomOf="@id/topPanel"
+            app:layout_constraintBottom_toBottomOf="@id/seventyFivePercentGuideline">
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/fiftyPercentGuideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"/>
             <TextView
                 android:id="@+id/roomName"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.roomName}"
+                android:textSize="24sp"
+                android:layout_marginEnd="8dp"
+                android:textAlignment="viewEnd"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/fiftyPercentGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/roomNumber"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:text="@{viewmodel.roomNumber}"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/roomName"
+                app:layout_constraintStart_toEndOf="@id/fiftyPercentGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/occupancyTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewmodel.occupancyTitle}"
+                android:textSize="32sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/roomName" />
@@ -114,6 +133,10 @@
                 android:id="@+id/occupancyIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewmodel.occupancyIcon}"
+                android:textSize="72sp"
+                android:includeFontPadding="false"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/occupancyTitle" />
@@ -124,7 +147,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/midPanel"
+            app:layout_constraintTop_toBottomOf="@id/seventyFivePercentGuideline"
             app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{true}">
 
