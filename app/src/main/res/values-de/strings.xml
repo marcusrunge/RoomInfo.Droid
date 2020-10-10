@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Raum Info</string>
+    <string name="title_home">Home</string>
+    <string name="title_calendar">Kalender</string>
+    <string name="title_settings">Einstellungen</string>
+    <string name="title_agendaitem">Reservierung</string>
+    <string name="select">Belegungsauswahl:</string>
+    <string name="agendaItemTitle">Bezeichnung</string>
+    <string name="descriptionTitle">Beschreibung:</string>
+    <string name="allDay">Ganztägig</string>
+    <string name="delete">Löschen</string>
+    <string name="company">Firma</string>
+    <string name="roomName">Raumname</string>
+    <string name="general">Allgemein</string>
+    <string name="logo">Logo</string>
+    <string name="network">Netzwerk</string>
+    <string name="udpPort">UDP Port</string>
+    <string name="tcpPort">TCP Port</string>
+    <string name="selectFile">Datei wählen</string>
+    <string name="roomNumber">Raumnummer</string>
+    <string name="reset">Zurücksetzen</string>
+    <string name="standardOccupancy">Standardbelegung</string>
+    <string-array name="occupancy_states">
+        <item>FREI</item>
+        <item>ANWESEND</item>
+        <item>ABWESEND</item>
+        <item>BESCHÄFTIGT</item>
+        <item>BELEGT</item>
+        <item>GESPERRT</item>
+        <item>HEIMBÜRO</item>
+    </string-array>
+    <string-array name="occupancy_titles">
+        <item>F R E I</item>
+        <item>A N W E S E N D</item>
+        <item>A B W E S E N D</item>
+        <item>B E S C H Ä F T I G T</item>
+        <item>B E L E G T</item>
+        <item>G E S P E R R T</item>
+        <item>H E I M B Ü R O</item>
+    </string-array>
+    <string-array name="occupancy_state_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="occupancy_icons">
+        <item>✓</item>
+        <item>★</item>
+        <item>➔</item>
+        <item>⧖</item>
+        <item>⛛</item>
+        <item>⨯</item>
+        <item>⌂</item>
+    </string-array>
+</resources>
