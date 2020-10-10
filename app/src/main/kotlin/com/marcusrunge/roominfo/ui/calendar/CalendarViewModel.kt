@@ -6,12 +6,14 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.ItemTouchHelper
+import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.implementations.SwipeToDeleteCallback
 import com.marcusrunge.roominfo.interfaces.OnBackClickedListener
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
+import com.marcusrunge.roominfo.preferences.interfaces.Preferences
 import com.marcusrunge.roominfo.ui.ViewModelBase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +26,8 @@ import javax.inject.Inject
 class CalendarViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val data: Data,
-    private val navController: NavController
+    private val navController: NavController,
+    private val preferences: Preferences
 ) : ViewModelBase(), OnBackClickedListener, CalendarView.OnDateChangeListener {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
 
@@ -57,6 +60,15 @@ class CalendarViewModel @Inject constructor(
         set(value) {
             field = value
             notifyPropertyChanged(BR.itemTouchHelper)
+        }
+
+    @get:Bindable
+    var occupancy: Int? = preferences.occupancy
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.occupancy)
+            }
         }
 
     init {

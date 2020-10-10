@@ -1,11 +1,15 @@
 package com.marcusrunge.roominfo.adapter
 
 import android.content.res.ColorStateList
+import android.graphics.ColorFilter
+import android.graphics.PorterDuff
 import android.view.View
+import android.widget.CalendarView
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.databinding.BindingAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_ABSENT
 import com.marcusrunge.roominfo.RoomInfoApplication.Companion.OCCUPANCY_STATE_BUSY
@@ -116,6 +120,11 @@ object GenericViewBindingsAdapter {
                 view is AppCompatButton -> {
                     view.setTextColor(foreground)
                     view.backgroundTintList = ColorStateList.valueOf(background)
+                    view.foregroundTintList= ColorStateList.valueOf(foreground)
+                }
+                view is FloatingActionButton->{
+                    view.backgroundTintList = ColorStateList.valueOf(background)
+                    view.drawable.setTint(foreground)
                 }
                 view is Spinner -> {
                     view.setBackgroundColor(background)
@@ -127,6 +136,9 @@ object GenericViewBindingsAdapter {
                 transparent != null && transparent -> view.setBackgroundColor(
                     transparentBackground
                 )
+                view is CalendarView->{
+                    
+                }
                 else -> view.setBackgroundColor(background)
             }
         }
