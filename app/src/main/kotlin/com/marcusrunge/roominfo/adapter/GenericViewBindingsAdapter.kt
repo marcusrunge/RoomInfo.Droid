@@ -137,7 +137,7 @@ object GenericViewBindingsAdapter {
                     transparentBackground
                 )
                 view is CalendarView->{
-                    
+
                 }
                 else -> view.setBackgroundColor(background)
             }
