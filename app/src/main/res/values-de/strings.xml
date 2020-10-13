@@ -21,6 +21,7 @@
     <string name="roomNumber">Raumnummer</string>
     <string name="reset">Zurücksetzen</string>
     <string name="standardOccupancy">Standardbelegung</string>
+    <string name="theme">Schema</string>
     <string-array name="occupancy_states">
         <item>FREI</item>
         <item>ANWESEND</item>
@@ -56,5 +57,15 @@
         <item>⛛</item>
         <item>⨯</item>
         <item>⌂</item>
+    </string-array>
+    <string-array name="themes">
+        <item>System</item>
+        <item>Hell</item>
+        <item>Dunkel</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
     </string-array>
 </resources>

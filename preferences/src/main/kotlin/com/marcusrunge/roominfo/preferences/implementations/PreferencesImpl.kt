@@ -33,4 +33,7 @@ internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
         }
     override val standardOccupancy: Int?
         get() = Integer.parseInt(sharedPreferences.getString("standardOccupancy", "0")!!)
+
+    override val theme: Int?
+        get() = Integer.parseInt(sharedPreferences.getString("theme", "0")!!)
 }
