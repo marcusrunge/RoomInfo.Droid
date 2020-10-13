@@ -15,7 +15,8 @@ import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
-    private val preferences: Preferences
+    @get:Bindable
+    val preferences: Preferences
 ) :
     ViewModelBase(),
     NavController.OnDestinationChangedListener, (Any?) -> Unit {
