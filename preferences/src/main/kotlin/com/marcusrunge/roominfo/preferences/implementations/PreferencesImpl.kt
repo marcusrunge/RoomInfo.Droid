@@ -1,13 +1,9 @@
 package com.marcusrunge.roominfo.preferences.implementations
 
 import android.content.Context
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
 import com.marcusrunge.roominfo.preferences.bases.PreferencesBase
 
 internal class PreferencesImpl(context: Context) : PreferencesBase(context) {
-    private val sharedPreferences: SharedPreferences =
-        PreferenceManager.getDefaultSharedPreferences(context)
 
     override val companyName: String?
         get() = sharedPreferences.getString("companyName", null)

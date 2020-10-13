@@ -6,6 +6,7 @@
             android:key="theme"
             android:title="@string/theme"
             android:entries="@array/themes"
+            android:entryValues="@array/theme_values"
             app:useSimpleSummaryProvider="true"/>
         <EditTextPreference
             app:key="companyName"
