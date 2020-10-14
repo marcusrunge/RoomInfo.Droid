@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{true}"
+            app:reverse="@{false}"
             app:layout_constraintEnd_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -50,6 +51,7 @@
                 android:textStyle="bold"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{true}"
+                app:reverse="@{false}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/logo"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -64,6 +66,7 @@
                 android:textSize="24sp"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
+                app:reverse="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,6 +80,7 @@
                 android:textSize="16sp"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
+                app:reverse="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/time" />
@@ -88,6 +92,7 @@
             android:layout_height="0dp"
             app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{false}"
+            app:reverse="@{false}"
             app:layout_constraintTop_toBottomOf="@id/topPanel"
             app:layout_constraintBottom_toBottomOf="@id/seventyFivePercentGuideline">
             <androidx.constraintlayout.widget.Guideline
@@ -96,6 +101,7 @@
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5"/>
+
             <TextView
                 android:id="@+id/roomName"
                 android:layout_width="0dp"
@@ -104,6 +110,9 @@
                 android:textSize="24sp"
                 android:layout_marginEnd="8dp"
                 android:textAlignment="viewEnd"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/fiftyPercentGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -115,6 +124,9 @@
                 android:layout_marginStart="8dp"
                 android:text="@{viewmodel.roomNumber}"
                 android:textSize="24sp"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/fiftyPercentGuideline"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -125,6 +137,9 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.occupancyTitle}"
                 android:textSize="32sp"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/roomName" />
@@ -136,6 +151,9 @@
                 android:text="@{viewmodel.occupancyIcon}"
                 android:textSize="72sp"
                 android:includeFontPadding="false"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -149,6 +167,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/seventyFivePercentGuideline"
             app:state="@{viewmodel.occupancySelection}"
+            app:reverse="@{false}"
             app:transparent="@{true}">
 
             <TextView
@@ -170,6 +189,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:state="@{viewmodel.occupancySelection}"
+                app:reverse="@{false}"
                 app:transparent="@{false}" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -197,6 +217,7 @@
                 app:setsetOnItemSelectedListener="@{viewmodel}"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
+                app:reverse="@{false}"
                 tools:ignore="RtlSymmetry" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

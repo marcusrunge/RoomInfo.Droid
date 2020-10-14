@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="freeForeground" format="color" />
+    <attr name="busyForeground" format="color" />
+    <attr name="occupiedForeground" format="color" />
+    <attr name="absentForeground" format="color" />
+    <attr name="presentForeground" format="color" />
+    <attr name="lockedForeground" format="color" />
+    <attr name="homeForeground" format="color" />
+</resources>

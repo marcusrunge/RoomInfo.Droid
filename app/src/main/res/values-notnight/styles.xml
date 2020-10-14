@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.RoomInfo.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="freeForeground">@color/freeForegroundNotNight</item>
+        <item name="busyForeground">@color/busyForegroundNotNight</item>
+        <item name="occupiedForeground">@color/occupiedForegroundNotNight</item>
+        <item name="absentForeground">@color/absentForegroundNotNight</item>
+        <item name="presentForeground">@color/presentForegroundNotNight</item>
+        <item name="lockedForeground">@color/lockedForegroundNotNight</item>
+        <item name="homeForeground">@color/homeForegroundNotNight</item>
+    </style>
+</resources>

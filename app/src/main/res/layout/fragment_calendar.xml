@@ -12,17 +12,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_marginBottom="?android:attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:state="@{viewmodel.occupancy}"
-        app:transparent="@{true}">
+        android:layout_height="match_parent">
 
         <CalendarView
             android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:setOnDateChangeListener="@{viewmodel}"
-            app:state="@{viewmodel.occupancy}"
-            app:transparent="@{true}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,8 +38,6 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:src="@drawable/ic_add"
-            app:state="@{viewmodel.occupancy}"
-            app:transparent="@{false}"
             android:onClick="@{()->viewmodel.addAgendaItem()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

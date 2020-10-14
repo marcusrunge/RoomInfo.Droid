@@ -51,7 +51,7 @@ object NavViewBindingsAdapter {
                             )
                         foreground =
                             view.context.resources.getColor(
-                                R.color.freeForeground,
+                                R.color.freeForegroundNotNight,
                                 view.context.theme
                             )
                         unselected = view.context.resources.getColor(
@@ -65,7 +65,7 @@ object NavViewBindingsAdapter {
                             view.context.theme
                         )
                         foreground = view.context.resources.getColor(
-                            R.color.presentForeground,
+                            R.color.presentForegroundNotNight,
                             view.context.theme
                         )
                         unselected = view.context.resources.getColor(
@@ -79,7 +79,7 @@ object NavViewBindingsAdapter {
                             view.context.theme
                         )
                         foreground = view.context.resources.getColor(
-                            R.color.absentForeground,
+                            R.color.absentForegroundNotNight,
                             view.context.theme
                         )
                         unselected = view.context.resources.getColor(
@@ -95,7 +95,7 @@ object NavViewBindingsAdapter {
                             )
                         foreground =
                             view.context.resources.getColor(
-                                R.color.busyForeground,
+                                R.color.busyForegroundNotNight,
                                 view.context.theme
                             )
                         unselected = view.context.resources.getColor(
@@ -109,7 +109,7 @@ object NavViewBindingsAdapter {
                             view.context.theme
                         )
                         foreground = view.context.resources.getColor(
-                            R.color.occupiedForeground,
+                            R.color.occupiedForegroundNotNight,
                             view.context.theme
                         )
                         unselected = view.context.resources.getColor(
@@ -123,7 +123,7 @@ object NavViewBindingsAdapter {
                             view.context.theme
                         )
                         foreground = view.context.resources.getColor(
-                            R.color.lockedForeground,
+                            R.color.lockedForegroundNotNight,
                             view.context.theme
                         )
                         unselected = view.context.resources.getColor(
@@ -139,7 +139,7 @@ object NavViewBindingsAdapter {
                             )
                         foreground =
                             view.context.resources.getColor(
-                                R.color.homeForeground,
+                                R.color.homeForegroundNotNight,
                                 view.context.theme
                             )
                         unselected = view.context.resources.getColor(
