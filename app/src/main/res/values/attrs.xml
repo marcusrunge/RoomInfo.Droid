@@ -7,4 +7,6 @@
     <attr name="presentForeground" format="color" />
     <attr name="lockedForeground" format="color" />
     <attr name="homeForeground" format="color" />
+    <attr name="buttonBackgroundTint" format="color" />
+    <attr name="buttonForegroundTint" format="color" />
 </resources>

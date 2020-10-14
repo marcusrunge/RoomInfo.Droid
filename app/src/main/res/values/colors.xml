@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="colorPrimaryNight">#FF455A64</color>
+    <color name="colorPrimaryDarkNight">#FF37474F</color>
+    <color name="colorAccentNight">#FF607D8B</color>
+    <color name="colorPrimaryNotNight">#FF78909C</color>
+    <color name="colorPrimaryDarkNotNight">#FF546E7A</color>
+    <color name="colorAccentNotNight">#FFB0BEC5</color>
     <color name="transparent">#00000000</color>
     <color name="delete">#D50000</color>
     <color name="freeBackground">#FF00F200</color>
@@ -37,4 +43,8 @@
     <color name="homeForegroundNight">#FF00BFA5</color>
     <color name="homeTransparentBackground">#7F00BFA5</color>
     <color name="homeUnSelected">#FF00AC98</color>
+    <color name="backgroundTintNotNight">#FFBDBDBD</color>
+    <color name="foregroundTintNotNight">#FF000000</color>
+    <color name="backgroundTintNight">#FF616161</color>
+    <color name="foregroundTintNight">#FFFFFFFF</color>
 </resources>

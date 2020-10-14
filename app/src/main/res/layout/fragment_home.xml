@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -14,31 +14,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="?android:attr/actionBarSize">
-<androidx.constraintlayout.widget.Guideline
-    android:id="@+id/seventyFivePercentGuideline"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
-    android:orientation="horizontal"
-    app:layout_constraintGuide_percent="0.67"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/seventyFivePercentGuideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.67" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topPanel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:state="@{viewmodel.occupancySelection}"
-            app:transparent="@{true}"
-            app:reverse="@{false}"
             app:layout_constraintEnd_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:reverse="@{false}"
+            app:state="@{viewmodel.occupancySelection}"
+            app:transparent="@{true}">
 
             <ImageView
                 android:id="@+id/logo"
                 android:layout_width="@dimen/doubleActionBarSize"
                 android:layout_height="@dimen/doubleActionBarSize"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginVertical="@dimen/activity_vertical_margin"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:setFilePath="@{viewmodel.logoFilePath}" />
 
             <TextView
@@ -49,87 +51,90 @@
                 android:text="@{viewmodel.companyName}"
                 android:textSize="32sp"
                 android:textStyle="bold"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{true}"
-                app:reverse="@{false}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/logo"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:reverse="@{false}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{true}" />
 
             <TextView
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.formattedTime}"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:text="@{viewmodel.formattedTime}"
                 android:textSize="24sp"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
-                app:reverse="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:reverse="@{false}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}" />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.formattedDate}"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:text="@{viewmodel.formattedDate}"
                 android:textSize="16sp"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
-                app:reverse="@{false}"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/time" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/time"
+                app:reverse="@{false}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/midPanel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:state="@{viewmodel.occupancySelection}"
-            app:transparent="@{false}"
-            app:reverse="@{false}"
+            app:layout_constraintBottom_toBottomOf="@id/seventyFivePercentGuideline"
             app:layout_constraintTop_toBottomOf="@id/topPanel"
-            app:layout_constraintBottom_toBottomOf="@id/seventyFivePercentGuideline">
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/fiftyPercentGuideline"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5"/>
+            app:reverse="@{false}"
+            app:state="@{viewmodel.occupancySelection}"
+            app:transparent="@{false}">
 
-            <TextView
-                android:id="@+id/roomName"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/roomInfo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.roomName}"
-                android:textSize="24sp"
-                android:layout_marginEnd="8dp"
-                android:textAlignment="viewEnd"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/fiftyPercentGuideline"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/roomNumber"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@{viewmodel.roomNumber}"
-                android:textSize="24sp"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/fiftyPercentGuideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/roomName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@{viewmodel.roomName}"
+                    android:textAlignment="viewEnd"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:reverse="@{true}"
+                    app:state="@{viewmodel.occupancySelection}"
+                    app:transparent="@{false}" />
+
+                <TextView
+                    android:id="@+id/roomNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{viewmodel.roomNumber}"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/roomName"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:reverse="@{true}"
+                    app:state="@{viewmodel.occupancySelection}"
+                    app:transparent="@{false}" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/occupancyTitle"
@@ -137,27 +142,27 @@
                 android:layout_height="wrap_content"
                 android:text="@{viewmodel.occupancyTitle}"
                 android:textSize="32sp"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/roomName" />
+                app:layout_constraintTop_toBottomOf="@id/roomInfo"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}" />
 
             <TextView
                 android:id="@+id/occupancyIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:includeFontPadding="false"
                 android:text="@{viewmodel.occupancyIcon}"
                 android:textSize="72sp"
-                android:includeFontPadding="false"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/occupancyTitle" />
+                app:layout_constraintTop_toBottomOf="@id/occupancyTitle"
+                app:reverse="@{true}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -166,8 +171,8 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/seventyFivePercentGuideline"
-            app:state="@{viewmodel.occupancySelection}"
             app:reverse="@{false}"
+            app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{true}">
 
             <TextView
@@ -188,8 +193,8 @@
                 android:text="@string/reset"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:state="@{viewmodel.occupancySelection}"
                 app:reverse="@{false}"
+                app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}" />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -197,10 +202,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}"
                 app:layout_constraintEnd_toStartOf="@id/selection"
                 app:layout_constraintStart_toEndOf="@id/occupancy"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}" />
 
             <Spinner
                 android:id="@+id/selection"
@@ -212,12 +217,12 @@
                 app:layout_constraintBottom_toBottomOf="@+id/reset"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/reset"
+                app:reverse="@{false}"
                 app:setArrayAdapter="@{viewmodel.occupancyAdapter}"
                 app:setSelection="@{viewmodel.occupancySelection}"
                 app:setsetOnItemSelectedListener="@{viewmodel}"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
-                app:reverse="@{false}"
                 tools:ignore="RtlSymmetry" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

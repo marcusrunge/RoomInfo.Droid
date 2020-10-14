@@ -2,6 +2,9 @@
 <resources>
 
     <style name="Theme.RoomInfo.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkNight</item>
+        <item name="colorAccent">@color/colorAccentNight</item>
         <item name="freeForeground">@color/freeForegroundNight</item>
         <item name="busyForeground">@color/busyForegroundNight</item>
         <item name="occupiedForeground">@color/occupiedForegroundNight</item>
@@ -9,5 +12,7 @@
         <item name="presentForeground">@color/presentForegroundNight</item>
         <item name="lockedForeground">@color/lockedForegroundNight</item>
         <item name="homeForeground">@color/homeForegroundNight</item>
+        <item name="buttonBackgroundTint">@color/backgroundTintNight</item>
+        <item name="buttonForegroundTint">@color/foregroundTintNight</item>
     </style>
 </resources>
