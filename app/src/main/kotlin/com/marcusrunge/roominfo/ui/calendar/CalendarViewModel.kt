@@ -6,7 +6,6 @@ import androidx.databinding.Bindable
 import androidx.databinding.library.baseAdapters.BR
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.ItemTouchHelper
-import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.adapter.AgendaRecyclerViewAdapter
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.implementations.SwipeToDeleteCallback
@@ -114,7 +113,10 @@ class CalendarViewModel @Inject constructor(
     fun addAgendaItem() {
         val directions =
             CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(0)
-        navController.navigate(directions)
+        try {
+            navController.navigate(directions)
+        } catch (e: Exception) {
+        }
     }
 
     fun editAgendaItem() {

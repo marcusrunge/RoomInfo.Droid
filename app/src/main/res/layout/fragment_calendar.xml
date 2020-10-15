@@ -18,6 +18,7 @@
             android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/Theme.RoomInfo.Calendar.DayNight"
             app:setOnDateChangeListener="@{viewmodel}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

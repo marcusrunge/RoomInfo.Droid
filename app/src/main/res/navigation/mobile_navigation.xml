@@ -18,14 +18,15 @@
         tools:layout="@layout/fragment_calendar">
         <action
             android:id="@+id/action_navigation_calendar_to_navigation_agendaitem"
-            app:destination="@id/navigation_agendaitem" />
+            app:destination="@id/navigation_agendaitem"
+            app:launchSingleTop="true"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_settings"
         android:name="com.marcusrunge.roominfo.ui.settings.SettingsFragment"
-        android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        android:label="@string/title_settings" />
 
     <fragment
         android:id="@+id/navigation_agendaitem"

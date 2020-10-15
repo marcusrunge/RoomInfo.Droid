@@ -15,4 +15,16 @@
         <item name="buttonBackgroundTint">@color/backgroundTintNotNight</item>
         <item name="buttonForegroundTint">@color/foregroundTintNotNight</item>
     </style>
+
+    <style name="Theme.RoomInfo.Calendar.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/backgroundTintNotNight</item>
+        <item name="colorPrimaryDark">@color/backgroundTintNotNight</item>
+        <item name="colorAccent">@color/backgroundTintNotNight</item>
+    </style>
+
+    <style name="Theme.RoomInfo.CheckBox.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/backgroundTintNotNight</item>
+        <item name="colorPrimaryDark">@color/backgroundTintNotNight</item>
+        <item name="colorAccent">@color/backgroundTintNotNight</item>
+    </style>
 </resources>

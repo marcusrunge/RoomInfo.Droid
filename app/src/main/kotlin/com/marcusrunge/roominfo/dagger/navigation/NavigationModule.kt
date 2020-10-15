@@ -7,12 +7,10 @@ import com.marcusrunge.roominfo.dagger.applicationresource.ApplicationResourceMo
 import com.marcusrunge.roominfo.models.ApplicationResource
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module(includes = [ApplicationResourceModule::class])
 class NavigationModule {
     @Provides
-    @Singleton
     fun provideNavController(applicationResource: ApplicationResource): NavController {
         return applicationResource.mainActivity!!.findNavController(id.nav_host_fragment)
     }
