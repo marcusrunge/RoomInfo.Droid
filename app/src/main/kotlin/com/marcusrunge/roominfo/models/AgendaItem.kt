@@ -13,6 +13,7 @@ data class AgendaItem(
     private var _overridden: Boolean?,
     private var _description: String?,
     private var _occupancy: Int?,
+    private var _textColor: Int?,
     private var _timeStamp: Long?,
     private var _deleted: Boolean?
 ) : BaseObservable() {
@@ -78,6 +79,14 @@ data class AgendaItem(
         set(value) {
             _occupancy = value
             notifyPropertyChanged(BR.occupancy)
+        }
+
+    @get:Bindable
+    var textColor: Int?
+        get() = _textColor
+        set(value) {
+            _textColor = value
+            notifyPropertyChanged(BR.textColor)
         }
 
     @get:Bindable

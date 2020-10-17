@@ -98,6 +98,7 @@ class CalendarViewModel @Inject constructor(
                         it.IsOverridden,
                         it.Description,
                         it.Occupancy,
+                        null,
                         it.TimeStamp,
                         it.IsDeleted
                     )

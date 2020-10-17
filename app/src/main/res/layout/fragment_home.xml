@@ -16,11 +16,11 @@
         android:layout_marginBottom="?android:attr/actionBarSize">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/seventyFivePercentGuideline"
+            android:id="@+id/fiftyPercentGuideline"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.67" />
+            app:layout_constraintGuide_percent="0.5" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topPanel"
@@ -92,7 +92,7 @@
             android:id="@+id/midPanel"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/seventyFivePercentGuideline"
+            app:layout_constraintBottom_toBottomOf="@id/fiftyPercentGuideline"
             app:layout_constraintTop_toBottomOf="@id/topPanel"
             app:reverse="@{false}"
             app:state="@{viewmodel.occupancySelection}"
@@ -149,7 +149,7 @@
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/occupancyIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,7 +162,7 @@
                 app:layout_constraintTop_toBottomOf="@id/occupancyTitle"
                 app:reverse="@{true}"
                 app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}" />
+                app:transparent="@{false}" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,7 +170,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seventyFivePercentGuideline"
+            app:layout_constraintTop_toBottomOf="@id/fiftyPercentGuideline"
             app:reverse="@{false}"
             app:state="@{viewmodel.occupancySelection}"
             app:transparent="@{true}">
@@ -199,12 +199,14 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/agenda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                app:layout_constraintEnd_toStartOf="@id/selection"
-                app:layout_constraintStart_toEndOf="@id/occupancy"
+                android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}" />
 
             <Spinner

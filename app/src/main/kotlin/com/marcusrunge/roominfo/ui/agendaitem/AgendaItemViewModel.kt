@@ -122,6 +122,7 @@ class AgendaItemViewModel @Inject constructor(
                     false,
                     description,
                     occupancySelection,
+                    null,
                     OffsetDateTime.now().toEpochSecond(),
                     false
                 )
@@ -137,6 +138,7 @@ class AgendaItemViewModel @Inject constructor(
                     false,
                     description,
                     occupancySelection,
+                    null,
                     OffsetDateTime.now().toEpochSecond(),
                     false
                 )
