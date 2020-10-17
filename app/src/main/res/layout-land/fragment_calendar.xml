@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.marcusrunge.roominfo.ui.calendar.CalendarViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?android:attr/actionBarSize">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/fiftyPercentGuideline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <CalendarView
+            android:id="@+id/calendar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:theme="@style/Theme.RoomInfo.Calendar.DayNight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fiftyPercentGuideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setOnDateChangeListener="@{viewmodel}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/day"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/fiftyPercentGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}"
+            app:setItemTouchHelper="@{viewmodel.itemTouchHelper}" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:backgroundTint="?attr/buttonBackgroundTint"
+            android:foregroundTint="?attr/buttonForegroundTint"
+            android:onClick="@{()->viewmodel.addAgendaItem()}"
+            android:src="@drawable/ic_add"
+            app:borderWidth="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
