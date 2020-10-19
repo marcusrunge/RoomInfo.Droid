@@ -43,8 +43,8 @@ class HomeViewModel @Inject constructor(
     @get:Bindable
     var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
         applicationResource.applicationContext!!,
-        R.array.occupancy_states,
-        android.R.layout.simple_spinner_item
+        R.array.occupancy_titles,
+        R.layout.custom_simple_spinner_item
     )
         set(value) {
             field = value

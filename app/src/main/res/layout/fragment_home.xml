@@ -136,7 +136,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/occupancyTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,8 +147,24 @@
                 app:layout_constraintTop_toBottomOf="@id/roomInfo"
                 app:reverse="@{true}"
                 app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}" />
-
+                app:transparent="@{false}" />-->
+            <Spinner
+                android:id="@+id/selection"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:gravity="center"
+                android:paddingEnd="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/roomInfo"
+                app:reverse="@{false}"
+                app:setArrayAdapter="@{viewmodel.occupancyAdapter}"
+                app:setSelection="@{viewmodel.occupancySelection}"
+                app:setsetOnItemSelectedListener="@{viewmodel}"
+                app:state="@{viewmodel.occupancySelection}"
+                app:transparent="@{false}"
+                tools:ignore="RtlSymmetry" />
             <!--<TextView
                 android:id="@+id/occupancyIcon"
                 android:layout_width="wrap_content"
@@ -209,7 +225,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}" />
 
-            <Spinner
+            <!--<Spinner
                 android:id="@+id/selection"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -225,7 +241,7 @@
                 app:setsetOnItemSelectedListener="@{viewmodel}"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
-                tools:ignore="RtlSymmetry" />
+                tools:ignore="RtlSymmetry" />-->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

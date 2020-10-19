@@ -32,6 +32,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:setOnDateChangeListener="@{viewmodel}" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="@dimen/activity_vertical_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/shape_linedivider"
+            app:layout_constraintStart_toStartOf="@id/fiftyPercentGuideline"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/day"
             android:layout_width="0dp"
