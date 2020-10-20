@@ -9,4 +9,5 @@
     <attr name="homeForeground" format="color" />
     <attr name="buttonBackgroundTint" format="color" />
     <attr name="buttonForegroundTint" format="color" />
+    <attr name="editTextBackgroundTint" format="color" />
 </resources>

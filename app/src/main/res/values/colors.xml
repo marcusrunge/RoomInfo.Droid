@@ -47,4 +47,10 @@
     <color name="foregroundTintNotNight">#FF000000</color>
     <color name="backgroundTintNight">#FF616161</color>
     <color name="foregroundTintNight">#FFFFFFFF</color>
+    <color name="editTextBackgroundNight">#FF757575</color>
+    <color name="editTextBackgroundNotNight">#FFE0E0E0</color>
+    <color name="editTextColorNight">#FF121212</color>
+    <color name="editTextColorNotNight">#FF757575</color>
+    <color name="buttonForegroundNight">#FF000000</color>
+    <color name="buttonForegroundNotNight">#FFFFFFFF</color>
 </resources>

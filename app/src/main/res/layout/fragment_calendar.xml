@@ -48,7 +48,7 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:backgroundTint="?attr/buttonBackgroundTint"
-            android:foregroundTint="?attr/buttonForegroundTint"
+            app:tint="?attr/buttonForegroundTint"
             android:onClick="@{()->viewmodel.addAgendaItem()}"
             android:src="@drawable/ic_add"
             app:borderWidth="0dp"

@@ -13,7 +13,9 @@
         <item name="lockedForeground">@color/lockedForegroundNotNight</item>
         <item name="homeForeground">@color/homeForegroundNotNight</item>
         <item name="buttonBackgroundTint">@color/backgroundTintNotNight</item>
-        <item name="buttonForegroundTint">@color/foregroundTintNotNight</item>
+        <item name="buttonForegroundTint">@color/buttonForegroundNotNight</item>
+        <item name="editTextBackground">@color/editTextBackgroundNotNight</item>
+        <item name="editTextColor">@color/editTextColorNotNight</item>
     </style>
 
     <style name="Theme.RoomInfo.Calendar.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
