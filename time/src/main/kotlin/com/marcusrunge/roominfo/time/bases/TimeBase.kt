@@ -3,13 +3,15 @@ package com.marcusrunge.roominfo.time.bases
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.time.interfaces.Time
 import com.marcusrunge.roominfo.time.receiver.TimeTickReceiver
 import java.lang.ref.WeakReference
 import java.text.SimpleDateFormat
 import java.util.*
 
-internal abstract class TimeBase(val context: Context) : Time, TimeTickReceiver.OnTimeTickListener {
+internal abstract class TimeBase(val context: Context, val data: Data) : Time,
+    TimeTickReceiver.OnTimeTickListener {
     private val onTimeTickListener: MutableList<WeakReference<((String?) -> Unit)?>> =
         mutableListOf()
     private val onDateTickListener: MutableList<WeakReference<((String?) -> Unit)?>> =
