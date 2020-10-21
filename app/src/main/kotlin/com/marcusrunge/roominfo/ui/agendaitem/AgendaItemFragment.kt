@@ -33,7 +33,8 @@ class AgendaItemFragment : Fragment() {
         binding.lifecycleOwner = this
         val viewmodel = ViewModelProvider(this, viewModelFactory)[AgendaItemViewModel::class.java]
         binding.viewmodel = viewmodel
-        viewmodel.id = arguments?.let { AgendaItemFragmentArgs.fromBundle(it).itemId }!!
+        viewmodel.setId(arguments?.let { AgendaItemFragmentArgs.fromBundle(it).itemId }!!)
+        viewmodel.setSelectedDate(arguments?.let { AgendaItemFragmentArgs.fromBundle(it).selectedDate }!!)
         return binding.root
     }
 }

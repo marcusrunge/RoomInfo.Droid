@@ -11,6 +11,7 @@ import com.marcusrunge.roominfo.R
 import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
+import com.marcusrunge.roominfo.time.interfaces.Time
 import com.marcusrunge.roominfo.ui.ViewModelBase
 import com.marcusrunge.roominfo.ui.datepicker.DatePickerFragment
 import com.marcusrunge.roominfo.ui.timepicker.TimePickerFragment
@@ -21,13 +22,13 @@ import java.time.LocalDateTime
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 class AgendaItemViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
-    private val data: Data
+    private val data: Data,
+    private val time: Time
 ) : ViewModelBase(), AdapterView.OnItemSelectedListener {
-    var id by Delegates.notNull<Long>()
+    private var id: Long = 0
     private val current = LocalDateTime.now()
     private val dateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
     private val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
@@ -62,14 +63,16 @@ class AgendaItemViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var startDate: String? = current.format(dateFormatter)
+    var startDate: String? =
+        time.collision.findStart(LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset))
+            .format(dateFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.startDate)
         }
 
     @get:Bindable
-    var startTime: String? = current.format(timeFormatter)
+    var startTime: String? = time.collision.findStart(current).format(timeFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.startTime)
@@ -83,14 +86,15 @@ class AgendaItemViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var endDate: String? = current.format(dateFormatter)
+    var endDate: String? = time.collision.findEnd(current).format(dateFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.endDate)
         }
 
     @get:Bindable
-    var endTime: String? = current.format(timeFormatter)
+    var endTime: String? =
+        time.collision.findEnd(current).format(timeFormatter).format(timeFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.endTime)
@@ -179,6 +183,27 @@ class AgendaItemViewModel @Inject constructor(
                 "endTime"
             )
         }
+    }
+
+    fun setId(id: Long) {
+        this.id = id
+    }
+
+    fun setSelectedDate(selectedDate: Long) {
+        startDate = time.collision.findStart(
+            LocalDateTime.ofEpochSecond(
+                selectedDate,
+                0,
+                OffsetDateTime.now().offset
+            )
+        ).format(dateFormatter)
+        endDate = time.collision.findEnd(
+            LocalDateTime.ofEpochSecond(
+                selectedDate,
+                0,
+                OffsetDateTime.now().offset
+            )
+        ).format(dateFormatter)
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {

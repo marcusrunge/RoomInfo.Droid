@@ -29,6 +29,7 @@ class CalendarViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModelBase(), OnBackClickedListener, CalendarView.OnDateChangeListener {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
+    private var selectedDate: Long = 0
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
@@ -113,7 +114,10 @@ class CalendarViewModel @Inject constructor(
 
     fun addAgendaItem() {
         val directions =
-            CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(0)
+            CalendarFragmentDirections.actionNavigationCalendarToNavigationAgendaitem(
+                itemId = 0,
+                selectedDate = selectedDate
+            )
         try {
             navController.navigate(directions)
         } catch (e: Exception) {
@@ -156,6 +160,8 @@ class CalendarViewModel @Inject constructor(
     }
 
     override fun onSelectedDayChange(p0: CalendarView, p1: Int, p2: Int, p3: Int) {
+        selectedDate =
+            LocalDateTime.of(p1, p2 + 1, p3, 0, 0).toEpochSecond(OffsetDateTime.now().offset)
         loadAgendaItems(p1, p2 + 1, p3)
     }
 }
