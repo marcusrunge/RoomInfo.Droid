@@ -5,13 +5,13 @@ import com.marcusrunge.roominfo.data.models.AgendaItem
 
 @Dao
 interface AgendaItems {
-    @Query("SELECT * FROM agendaitem")
+    @Query("SELECT * FROM agendaitem ORDER BY start DESC")
     fun getAll(): List<AgendaItem>
 
-    @Query("SELECT * FROM agendaitem WHERE `start`>= :dateTimeFrom AND `end` <= :dateTimeTo")
+    @Query("SELECT * FROM agendaitem WHERE `start`>= :dateTimeFrom AND `end` <= :dateTimeTo ORDER BY start DESC")
     fun getAll(dateTimeFrom: Long, dateTimeTo: Long): List<AgendaItem>
 
-    @Query("SELECT * FROM agendaitem WHERE `end`> :dateTime LIMIT 3")
+    @Query("SELECT * FROM agendaitem WHERE `end`> :dateTime ORDER BY start DESC LIMIT 3 ")
     fun getThree(dateTime: Long): List<AgendaItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
