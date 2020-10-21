@@ -64,15 +64,15 @@ class AgendaItemViewModel @Inject constructor(
 
     @get:Bindable
     var startDate: String? =
-        time.collision.findStart(LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset))
-            .format(dateFormatter)
+        LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset).format(dateFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.startDate)
         }
 
     @get:Bindable
-    var startTime: String? = time.collision.findStart(current).format(timeFormatter)
+    var startTime: String? =
+        LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset).format(timeFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.startTime)
@@ -86,7 +86,8 @@ class AgendaItemViewModel @Inject constructor(
         }
 
     @get:Bindable
-    var endDate: String? = time.collision.findEnd(current).format(dateFormatter)
+    var endDate: String? =
+        LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset).format(dateFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.endDate)
@@ -94,7 +95,7 @@ class AgendaItemViewModel @Inject constructor(
 
     @get:Bindable
     var endTime: String? =
-        time.collision.findEnd(current).format(timeFormatter).format(timeFormatter)
+        LocalDateTime.ofEpochSecond(0, 0, OffsetDateTime.now().offset).format(timeFormatter)
         set(value) {
             field = value
             notifyPropertyChanged(BR.endTime)
@@ -197,13 +198,7 @@ class AgendaItemViewModel @Inject constructor(
                 OffsetDateTime.now().offset
             )
         ).format(dateFormatter)
-        endDate = time.collision.findEnd(
-            LocalDateTime.ofEpochSecond(
-                selectedDate,
-                0,
-                OffsetDateTime.now().offset
-            )
-        ).format(dateFormatter)
+        endDate = time.collision.end?.format(dateFormatter)
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {
