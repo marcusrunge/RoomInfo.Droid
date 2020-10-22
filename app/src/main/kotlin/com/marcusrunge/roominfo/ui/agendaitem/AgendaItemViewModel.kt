@@ -191,14 +191,14 @@ class AgendaItemViewModel @Inject constructor(
     }
 
     fun setSelectedDate(selectedDate: Long) {
-        startDate = time.collision.findStart(
+        startDate = time.checkFind.findStart(
             LocalDateTime.ofEpochSecond(
                 selectedDate,
                 0,
                 OffsetDateTime.now().offset
             )
         ).format(dateFormatter)
-        endDate = time.collision.end?.format(dateFormatter)
+        endDate = time.checkFind.end?.format(dateFormatter)
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {

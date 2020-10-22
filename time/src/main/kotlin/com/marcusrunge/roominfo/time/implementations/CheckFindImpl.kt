@@ -1,11 +1,11 @@
 package com.marcusrunge.roominfo.time.implementations
 
 import com.marcusrunge.roominfo.time.bases.TimeBase
-import com.marcusrunge.roominfo.time.interfaces.Collision
+import com.marcusrunge.roominfo.time.interfaces.CheckFind
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
 
-internal class CollisionImpl(private val timeBase: TimeBase) : Collision {
+internal class CheckFindImpl(private val timeBase: TimeBase) : CheckFind {
     private lateinit var window: Pair<LocalDateTime, LocalDateTime>
 
     override val end: LocalDateTime?

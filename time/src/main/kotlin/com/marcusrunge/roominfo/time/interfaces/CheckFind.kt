@@ -2,7 +2,7 @@ package com.marcusrunge.roominfo.time.interfaces
 
 import java.time.LocalDateTime
 
-interface Collision {
+interface CheckFind {
     val end: LocalDateTime?
     fun findStart(selectedDate: LocalDateTime): LocalDateTime
     fun checkStart(start: LocalDateTime): Boolean
