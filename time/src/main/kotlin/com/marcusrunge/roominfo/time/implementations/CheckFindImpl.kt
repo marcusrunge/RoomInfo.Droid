@@ -38,13 +38,16 @@ internal class CheckFindImpl(private val timeBase: TimeBase) : CheckFind {
                     offset
                 )
             ) {
-                if (x == agendaItems.size - 1) {
+                if (x == agendaItems.size - 1 || agendaItems[x + 1].Start!! > agendaItems[x].End!! + 1860) {
                     window = Pair(
                         LocalDateTime.ofEpochSecond(agendaItems[x].End!! + 60, 0, offset),
                         LocalDateTime.ofEpochSecond(agendaItems[x].End!! + 1860, 0, offset)
                     )
-                } else {
-                    //TODO
+                } else if (agendaItems[x + 1].Start!! > agendaItems[x].End!! + 60) {
+                    window = Pair(
+                        LocalDateTime.ofEpochSecond(agendaItems[x].End!! + 60, 0, offset),
+                        LocalDateTime.ofEpochSecond(agendaItems[x + 1].Start!! - 60, 0, offset)
+                    )
                 }
             }
         }
