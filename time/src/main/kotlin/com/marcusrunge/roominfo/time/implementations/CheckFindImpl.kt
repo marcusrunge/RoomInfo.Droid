@@ -55,10 +55,16 @@ internal class CheckFindImpl(private val timeBase: TimeBase) : CheckFind {
     }
 
     override fun checkStart(start: LocalDateTime): Boolean {
-        TODO("Not yet implemented")
+        timeBase.data.agendaItems.getAll().forEach {
+            if (start.toEpochSecond(offset) >= it.Start!! && start.toEpochSecond(offset) <= it.End!!) return false
+        }
+        return true
     }
 
     override fun checkEnd(end: LocalDateTime): Boolean {
-        TODO("Not yet implemented")
+        timeBase.data.agendaItems.getAll().forEach {
+            if (end.toEpochSecond(offset) >= it.Start!!) return false
+        }
+        return true
     }
 }
