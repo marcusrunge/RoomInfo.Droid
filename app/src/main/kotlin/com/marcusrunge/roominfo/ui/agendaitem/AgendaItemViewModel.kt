@@ -161,9 +161,28 @@ class AgendaItemViewModel @Inject constructor(
                 "startDate"
             )
             R.id.startTime -> TimePickerFragment { h: Int, m: Int ->
-                localStart =
-                    LocalDateTime.of(localStart.year, localStart.month, localStart.dayOfMonth, h, m)
-                startTime = localStart.format(timeFormatter)
+                CoroutineScope(Dispatchers.IO).launch {
+                    if (time.checkFind.checkStart(
+                            LocalDateTime.of(
+                                localStart.year,
+                                localStart.month,
+                                localStart.dayOfMonth,
+                                h,
+                                m
+                            )
+                        )
+                    ) {
+                        localStart =
+                            LocalDateTime.of(
+                                localStart.year,
+                                localStart.month,
+                                localStart.dayOfMonth,
+                                h,
+                                m
+                            )
+                        startTime = localStart.format(timeFormatter)
+                    }
+                }
             }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "startTime"
@@ -176,9 +195,28 @@ class AgendaItemViewModel @Inject constructor(
                 "endDate"
             )
             R.id.endTime -> TimePickerFragment { h: Int, m: Int ->
-                localEnd =
-                    LocalDateTime.of(localEnd.year, localEnd.month, localEnd.dayOfMonth, h, m)
-                endTime = localEnd.format(timeFormatter)
+                CoroutineScope(Dispatchers.IO).launch {
+                    if (time.checkFind.checkEnd(
+                            LocalDateTime.of(
+                                localEnd.year,
+                                localEnd.month,
+                                localEnd.dayOfMonth,
+                                h,
+                                m
+                            )
+                        )
+                    ) {
+                        localEnd =
+                            LocalDateTime.of(
+                                localEnd.year,
+                                localEnd.month,
+                                localEnd.dayOfMonth,
+                                h,
+                                m
+                            )
+                        endTime = localEnd.format(timeFormatter)
+                    }
+                }
             }.show(
                 applicationResource.mainActivity!!.supportFragmentManager,
                 "endTime"
@@ -191,14 +229,20 @@ class AgendaItemViewModel @Inject constructor(
     }
 
     fun setSelectedDate(selectedDate: Long) {
-        startDate = time.checkFind.findStart(
-            LocalDateTime.ofEpochSecond(
-                selectedDate,
-                0,
-                OffsetDateTime.now().offset
+        CoroutineScope(Dispatchers.IO).launch {
+            localStart = time.checkFind.findStart(
+                LocalDateTime.ofEpochSecond(
+                    selectedDate,
+                    0,
+                    OffsetDateTime.now().offset
+                )
             )
-        ).format(dateFormatter)
-        endDate = time.checkFind.end?.format(dateFormatter)
+            localEnd = time.checkFind.end!!
+            startDate = localStart.format(dateFormatter)
+            startTime = localStart.format(timeFormatter)
+            endDate = localEnd.format(dateFormatter)
+            endTime = localEnd.format(timeFormatter)
+        }
     }
 
     private fun addAgendaItem(agendaItem: AgendaItem) {

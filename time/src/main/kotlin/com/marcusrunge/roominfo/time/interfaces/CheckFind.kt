@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 interface CheckFind {
     val end: LocalDateTime?
-    fun findStart(selectedDate: LocalDateTime): LocalDateTime
-    fun checkStart(start: LocalDateTime): Boolean
-    fun checkEnd(end: LocalDateTime): Boolean
+    suspend fun findStart(selectedDate: LocalDateTime): LocalDateTime
+    suspend fun checkStart(start: LocalDateTime): Boolean
+    suspend fun checkEnd(end: LocalDateTime): Boolean
 }

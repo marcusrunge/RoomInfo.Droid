@@ -29,7 +29,7 @@ class CalendarViewModel @Inject constructor(
     private val preferences: Preferences
 ) : ViewModelBase(), OnBackClickedListener, CalendarView.OnDateChangeListener {
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
-    private var selectedDate: Long = 0
+    private var selectedDate: Long = LocalDateTime.now().toEpochSecond(OffsetDateTime.now().offset)
 
     @get:Bindable
     var agendaRecyclerViewAdapter: AgendaRecyclerViewAdapter? =
