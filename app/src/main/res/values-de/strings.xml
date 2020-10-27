@@ -19,7 +19,8 @@
     <string name="tcpPort">TCP Port</string>
     <string name="selectFile">Datei wählen</string>
     <string name="roomNumber">Raumnummer</string>
-    <string name="reset">Zurücksetzen</string>
+    <string name="auto">Auto</string>
+    <string name="manual">Manuell</string>
     <string name="standardOccupancy">Standardbelegung</string>
     <string name="theme">Schema</string>
     <string-array name="occupancy_states">

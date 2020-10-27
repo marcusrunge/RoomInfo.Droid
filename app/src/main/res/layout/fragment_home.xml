@@ -206,7 +206,7 @@
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:gravity="center"
                 android:onClick="@{()->viewmodel.reset()}"
-                android:text="@string/reset"
+                android:text="@string/auto"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:reverse="@{false}"
