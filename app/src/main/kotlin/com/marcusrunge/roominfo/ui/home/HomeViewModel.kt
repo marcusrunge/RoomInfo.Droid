@@ -39,6 +39,7 @@ class HomeViewModel @Inject constructor(
     private val timeSpanItems: MutableList<TimeSpanItem> = mutableListOf()
     private var isSpinnerInitialized = false
     private var textColor = 0
+    private var isAuto = true
 
     @get:Bindable
     var occupancyAdapter: ArrayAdapter<CharSequence>? = ArrayAdapter.createFromResource(
@@ -135,6 +136,14 @@ class HomeViewModel @Inject constructor(
                 agendaRecyclerViewAdapter?.notifyDataSetChanged()
                 notifyPropertyChanged(BR.occupancySelection)
             }
+        }
+
+    @get:Bindable
+    var resetText: String? =
+        applicationResource.applicationContext?.resources?.getString(if (isAuto) R.string.auto else R.string.manual)
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.resetText)
         }
 
     init {

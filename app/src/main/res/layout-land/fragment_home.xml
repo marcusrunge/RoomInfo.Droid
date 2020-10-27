@@ -48,16 +48,16 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:text="@{viewmodel.companyName}"
-                android:textSize="32sp"
-                android:textStyle="bold"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text="@{viewmodel.companyName}"
+                android:textSize="32sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/date"
                 app:layout_constraintStart_toEndOf="@id/logo"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/date"
                 app:reverse="@{false}"
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{true}" />
@@ -139,19 +139,6 @@
                     app:transparent="@{false}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <!--<TextView
-                android:id="@+id/occupancyTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewmodel.occupancyTitle}"
-                android:textSize="32sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/roomInfo"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}" />-->
             <Spinner
                 android:id="@+id/selection"
                 android:layout_width="wrap_content"
@@ -169,21 +156,6 @@
                 app:state="@{viewmodel.occupancySelection}"
                 app:transparent="@{false}"
                 tools:ignore="RtlSymmetry" />
-
-            <TextView
-                android:id="@+id/occupancyIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:includeFontPadding="false"
-                android:text="@{viewmodel.occupancyIcon}"
-                android:textSize="72sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/selection"
-                app:reverse="@{true}"
-                app:state="@{viewmodel.occupancySelection}"
-                app:transparent="@{false}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,12 +194,12 @@
                 android:id="@+id/agenda"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginHorizontal="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:setAdapter="@{viewmodel.agendaRecyclerViewAdapter}" />
 
             <!--<Spinner
