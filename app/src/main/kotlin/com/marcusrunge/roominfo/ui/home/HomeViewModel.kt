@@ -148,14 +148,14 @@ class HomeViewModel @Inject constructor(
 
     init {
         loadItems()
-        time.dateTime.timeUnit = {
+        time.dateTime.timing = {
             val message = Message()
             message.what = UPDATE_VIEW
             message.arg1 = FORMATTED_TIME
             message.obj = it
             handler.sendMessage(message)
         }
-        time.dateTime.dateUnit = {
+        time.dateTime.dating = {
             val message = Message()
             message.what = UPDATE_VIEW
             message.arg1 = FORMATTED_DATE

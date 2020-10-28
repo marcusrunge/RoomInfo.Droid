@@ -4,25 +4,25 @@ import com.marcusrunge.roominfo.time.bases.TimeBase
 import com.marcusrunge.roominfo.time.interfaces.DateTime
 
 internal class DateTimeImpl(private val timeBase: TimeBase) : DateTime {
-    private var _timeUnit: ((String?) -> Unit)? = null
-    override var timeUnit: ((String?) -> Unit)?
-        get() = _timeUnit
+    private var _timing: ((String?) -> Unit)? = null
+    override var timing: ((String?) -> Unit)?
+        get() = _timing
         set(value) {
-            if (value == null) timeBase.removeOnTimeTickListener(_timeUnit)
+            if (value == null) timeBase.removeOnTimeTickListener(_timing)
             else {
-                _timeUnit = value
-                timeBase.addOnTimeTickListener(_timeUnit)
+                _timing = value
+                timeBase.addOnTimeTickListener(_timing)
             }
         }
 
-    private var _dateUnit: ((String?) -> Unit)? = null
-    override var dateUnit: ((String?) -> Unit)?
-        get() = _dateUnit
+    private var _dating: ((String?) -> Unit)? = null
+    override var dating: ((String?) -> Unit)?
+        get() = _dating
         set(value) {
-            if (value == null) timeBase.removeOnDateTickListener(_dateUnit)
+            if (value == null) timeBase.removeOnDateTickListener(_dating)
             else {
-                _dateUnit = value
-                timeBase.addOnDateTickListener(_dateUnit)
+                _dating = value
+                timeBase.addOnDateTickListener(_dating)
             }
         }
 }
