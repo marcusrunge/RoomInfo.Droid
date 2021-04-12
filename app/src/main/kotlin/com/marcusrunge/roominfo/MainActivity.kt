@@ -1,7 +1,8 @@
 package com.marcusrunge.roominfo
 
-import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -9,7 +10,6 @@ import com.marcusrunge.roominfo.databinding.ActivityMainBinding
 import com.marcusrunge.roominfo.interfaces.OnBackClickedListener
 import com.marcusrunge.roominfo.interfaces.OnFileSelectedListener
 import com.marcusrunge.roominfo.ui.main.MainViewModel
-import com.marcusrunge.roominfo.ui.settings.SettingsFragment.Companion.SELECT_FILE_REQUEST_CODE
 import dagger.android.AndroidInjection
 import java.lang.ref.WeakReference
 import javax.inject.Inject
@@ -21,6 +21,15 @@ class MainActivity : AppCompatActivity() {
         mutableListOf()
     private val onFileSelectedListeners: MutableList<WeakReference<OnFileSelectedListener>> =
         mutableListOf()
+
+    val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        for (weakRef in onFileSelectedListeners) {
+            try {
+                weakRef.get()?.onFileSelected(uri)
+            } catch (e: Exception) {
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,21 +79,5 @@ class MainActivity : AppCompatActivity() {
             }
         }
         super.onBackPressed()
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK) {
-            when (requestCode) {
-                SELECT_FILE_REQUEST_CODE -> {
-                    for (weakRef in onFileSelectedListeners) {
-                        try {
-                            weakRef.get()?.onFileSelected(data?.data)
-                        } catch (e: Exception) {
-                        }
-                    }
-                }
-            }
-        }
     }
 }

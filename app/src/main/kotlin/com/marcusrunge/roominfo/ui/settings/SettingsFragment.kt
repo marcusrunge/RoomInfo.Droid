@@ -1,8 +1,6 @@
 package com.marcusrunge.roominfo.ui.settings
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
 import android.net.Uri
@@ -17,11 +15,7 @@ import dagger.android.support.AndroidSupportInjection
 import java.io.InputStream
 import javax.inject.Inject
 
-
 class SettingsFragment : PreferenceFragmentCompat(), OnFileSelectedListener {
-    companion object {
-        const val SELECT_FILE_REQUEST_CODE = 1
-    }
 
     @Inject
     lateinit var preferences: Preferences
@@ -41,16 +35,7 @@ class SettingsFragment : PreferenceFragmentCompat(), OnFileSelectedListener {
         setPreferencesFromResource(R.xml.preferences, rootKey)
         val logoPicker = findPreference<Preference>("logoPicker")
         logoPicker?.setOnPreferenceClickListener {
-            val selectFileIntent = Intent()
-                .setType("image/*")
-                .setAction(Intent.ACTION_OPEN_DOCUMENT)
-            activity?.startActivityForResult(
-                Intent.createChooser(
-                    selectFileIntent, context?.getString(
-                        R.string.selectFile
-                    )
-                ), SELECT_FILE_REQUEST_CODE
-            )
+            (activity as MainActivity).getContent.launch("image/*")
             true
         }
         if (preferences.logoFilePath != null) {
@@ -67,10 +52,6 @@ class SettingsFragment : PreferenceFragmentCompat(), OnFileSelectedListener {
     override fun onFileSelected(fileUri: Uri?) {
         if (fileUri != null) {
             val logoPicker = findPreference<Preference>("logoPicker")
-            activity?.contentResolver?.takePersistableUriPermission(
-                fileUri,
-                FLAG_GRANT_READ_URI_PERMISSION
-            )
             val inputStream: InputStream? = activity?.contentResolver?.openInputStream(fileUri)
             val bitmap = BitmapFactory.decodeStream(inputStream)
             logoPicker?.icon =
