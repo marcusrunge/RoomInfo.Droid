@@ -14,6 +14,7 @@ import com.marcusrunge.roominfo.data.interfaces.Data
 import com.marcusrunge.roominfo.models.AgendaItem
 import com.marcusrunge.roominfo.models.ApplicationResource
 import com.marcusrunge.roominfo.models.TimeSpanItem
+import com.marcusrunge.roominfo.occupancy.interfaces.Occupancy
 import com.marcusrunge.roominfo.preferences.interfaces.Preferences
 import com.marcusrunge.roominfo.time.interfaces.Time
 import com.marcusrunge.roominfo.ui.ViewModelBase
@@ -28,7 +29,8 @@ class HomeViewModel @Inject constructor(
     private val applicationResource: ApplicationResource,
     private val preferences: Preferences,
     private val data: Data,
-    private val time: Time
+    private val time: Time,
+    private val occupancy: Occupancy
 ) : ViewModelBase(), AdapterView.OnItemSelectedListener {
     private companion object {
         const val FORMATTED_TIME = 1

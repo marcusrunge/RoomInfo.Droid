@@ -58,6 +58,7 @@ dependencies {
     implementation project(path: ':sockets')
     implementation project(path: ':preferences')
     implementation project(path:':time')
+    implementation project(path:':occupancy')
     kapt "com.android.databinding:compiler:$compiler_version"
     kapt "android.arch.lifecycle:common-java8:$lifecycle_version"
     implementation "com.google.dagger:dagger:$dagger_version"

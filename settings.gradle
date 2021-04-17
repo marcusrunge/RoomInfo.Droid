@@ -1,3 +1,5 @@
+include ':occupancy'
+include ':occupancy'
 include ':time'
 include ':preferences'
 include ':sockets'

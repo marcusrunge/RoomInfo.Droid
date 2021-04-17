@@ -4,6 +4,7 @@ import com.marcusrunge.roominfo.RoomInfoApplication
 import com.marcusrunge.roominfo.dagger.applicationresource.ApplicationResourceModule
 import com.marcusrunge.roominfo.dagger.data.DataModule
 import com.marcusrunge.roominfo.dagger.navigation.NavigationModule
+import com.marcusrunge.roominfo.dagger.occupancy.OccupancyModule
 import com.marcusrunge.roominfo.dagger.preferences.PreferencesModule
 import com.marcusrunge.roominfo.dagger.sockets.SocketsModule
 import com.marcusrunge.roominfo.dagger.time.TimeModule
@@ -26,7 +27,8 @@ import javax.inject.Singleton
         ApplicationResourceModule::class,
         NavigationModule::class,
         PreferencesModule::class,
-        TimeModule::class]
+        TimeModule::class,
+        OccupancyModule::class]
 )
 interface RoomInfoApplicationComponent {
     fun inject(roomInfoApplication: RoomInfoApplication)
