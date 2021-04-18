@@ -19,8 +19,7 @@ internal class SchedulerImpl(occupancyBase: OccupancyBase) : Scheduler {
         }
     }
 
-    override var updateOccupancy: (() -> Unit)?
-        get() = null
+    override var updateOccupancy: (() -> Unit)? = null
         set(value) = when (value) {
             null -> removeUpdateOccupancyListener(value)
             else -> addUpdateOccupancyListener(value)
