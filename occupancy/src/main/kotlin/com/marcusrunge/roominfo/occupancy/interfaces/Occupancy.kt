@@ -1,3 +1,5 @@
 package com.marcusrunge.roominfo.occupancy.interfaces
 
-interface Occupancy
+interface Occupancy {
+    val scheduler: Scheduler
+}
