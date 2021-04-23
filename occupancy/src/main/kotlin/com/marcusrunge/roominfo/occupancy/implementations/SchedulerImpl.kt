@@ -4,6 +4,9 @@ import com.marcusrunge.roominfo.data.models.AgendaItem
 import com.marcusrunge.roominfo.data.models.TimeSpanItem
 import com.marcusrunge.roominfo.occupancy.bases.OccupancyBase
 import com.marcusrunge.roominfo.occupancy.interfaces.Scheduler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
 import java.time.OffsetDateTime
 
@@ -22,12 +25,6 @@ internal class SchedulerImpl(private val occupancyBase: OccupancyBase) : Schedul
                 scheduler!!
             }
         }
-    }
-
-    init {
-        occupancyBase.time.timer.start = { occupancy?.let { invokeUpdateOccupancy(it) } }
-        occupancyBase.time.timer.end = { setNextOccupancy() }
-        setNextOccupancy()
     }
 
     private fun setNextOccupancy() {
@@ -57,6 +54,7 @@ internal class SchedulerImpl(private val occupancyBase: OccupancyBase) : Schedul
         when {
             currentAgendaItem != null -> {
                 invokeUpdateOccupancy(currentAgendaItem!!.Occupancy!!)
+                occupancyBase.time.timer.setEnd(currentAgendaItem!!.End!!)
             }
             nextAgendaItem != null -> {
                 invokeUpdateOccupancy(occupancyBase.preferences.standardOccupancy!!)
@@ -65,6 +63,7 @@ internal class SchedulerImpl(private val occupancyBase: OccupancyBase) : Schedul
             }
             currentTimeSpanItem != null -> {
                 invokeUpdateOccupancy(currentTimeSpanItem!!.Occupancy!!)
+                occupancyBase.time.timer.setEnd(currentTimeSpanItem!!.End!!)
             }
             nextTimeSpanItem != null -> {
                 invokeUpdateOccupancy(occupancyBase.preferences.standardOccupancy!!)
@@ -83,6 +82,14 @@ internal class SchedulerImpl(private val occupancyBase: OccupancyBase) : Schedul
             else -> addUpdateOccupancyListener(value)
         }
 
+    override fun init() {
+        occupancyBase.time.timer.start = { occupancy?.let { invokeUpdateOccupancy(it) } }
+        occupancyBase.time.timer.end =
+            { CoroutineScope(Dispatchers.IO).launch { setNextOccupancy() } }
+        CoroutineScope(Dispatchers.IO).launch {
+            setNextOccupancy()
+        }
+    }
 
     private fun addUpdateOccupancyListener(updateOccupancyListener: ((Int) -> Unit)?) {
         this.updateOccupancyListener.add(WeakReference(updateOccupancyListener))

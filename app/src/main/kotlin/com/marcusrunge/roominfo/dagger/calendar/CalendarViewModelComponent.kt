@@ -16,5 +16,5 @@ interface CalendarViewModelComponent {
     fun inject(calendarViewModel: CalendarViewModel)
     fun provideApplicationResource(): ApplicationResource
     fun provideData(): Data
-    fun providePreferences():Preferences
+    fun providePreferences(): Preferences
 }

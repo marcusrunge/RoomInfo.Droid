@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <PreferenceCategory android:title="@string/general">
         <DropDownPreference
-            android:key="theme"
-            android:title="@string/theme"
             android:entries="@array/themes"
             android:entryValues="@array/theme_values"
-            app:useSimpleSummaryProvider="true"/>
+            android:key="theme"
+            android:title="@string/theme"
+            app:useSimpleSummaryProvider="true" />
         <EditTextPreference
             app:key="companyName"
             app:title="@string/company"
@@ -24,11 +24,11 @@
             android:key="logoPicker"
             android:title="@string/logo" />
         <DropDownPreference
-            android:key="standardOccupancy"
-            android:title="@string/standardOccupancy"
             android:entries="@array/occupancy_states"
             android:entryValues="@array/occupancy_state_values"
-            app:useSimpleSummaryProvider="true"/>
+            android:key="standardOccupancy"
+            android:title="@string/standardOccupancy"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/network">
         <EditTextPreference

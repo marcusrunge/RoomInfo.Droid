@@ -40,7 +40,7 @@ internal class TimerImpl(private val timeBase: TimeBase) : Timer {
         if (delay > -1) {
             abort()
             startTimer = java.util.Timer()
-            startTimer!!.schedule(delay) {
+            startTimer!!.schedule(delay * 1000) {
                 invokeStart()
                 startTimer = null
             }
@@ -53,7 +53,7 @@ internal class TimerImpl(private val timeBase: TimeBase) : Timer {
         if (delay > -1) {
             abort()
             endTimer = java.util.Timer()
-            endTimer!!.schedule(delay) {
+            endTimer!!.schedule(delay * 1000) {
                 invokeEnd()
                 endTimer = null
             }

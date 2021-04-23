@@ -34,9 +34,9 @@
                 android:id="@+id/agendaItemTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@={viewmodel.agendaItemTitle}"
                 android:background="@drawable/shape_edittext_background"
                 android:padding="8dp"
+                android:text="@={viewmodel.agendaItemTitle}"
                 android:textColor="?attr/editTextColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -153,9 +153,9 @@
                 android:id="@+id/description"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:background="@drawable/shape_edittext_background"
                 android:gravity="top"
                 android:inputType="textMultiLine"
-                android:background="@drawable/shape_edittext_background"
                 android:padding="8dp"
                 android:textColor="?attr/editTextColor"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -170,11 +170,11 @@
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:backgroundTint="?attr/buttonBackgroundTint"
-            app:tint="?attr/buttonForegroundTint"
             android:onClick="@{()->viewmodel.saveAgendaItem()}"
             android:src="@drawable/ic_save"
             app:borderWidth="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:tint="?attr/buttonForegroundTint" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

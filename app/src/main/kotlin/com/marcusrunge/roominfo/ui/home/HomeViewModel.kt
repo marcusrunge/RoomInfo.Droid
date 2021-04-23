@@ -164,6 +164,11 @@ class HomeViewModel @Inject constructor(
             message.obj = it
             handler.sendMessage(message)
         }
+        occupancy.scheduler.init()
+        occupancy.scheduler.updateOccupancy = {
+            occupancySelection = -1
+            occupancySelection = it
+        }
     }
 
     private fun loadItems() {
