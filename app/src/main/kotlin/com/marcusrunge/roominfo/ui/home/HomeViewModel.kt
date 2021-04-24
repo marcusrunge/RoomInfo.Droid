@@ -35,6 +35,7 @@ class HomeViewModel @Inject constructor(
     private companion object {
         const val FORMATTED_TIME = 1
         const val FORMATTED_DATE = 2
+        const val UPDATED_OCCUPANCY = 3
     }
 
     private val agendaItems: MutableList<AgendaItem> = mutableListOf()
@@ -166,8 +167,11 @@ class HomeViewModel @Inject constructor(
         }
         occupancy.scheduler.init()
         occupancy.scheduler.updateOccupancy = {
-            occupancySelection = -1
-            occupancySelection = it
+            val message = Message()
+            message.what = UPDATE_VIEW
+            message.arg1 = UPDATED_OCCUPANCY
+            message.obj = it
+            handler.sendMessage(message)
         }
     }
 
@@ -215,6 +219,10 @@ class HomeViewModel @Inject constructor(
         when (inputMessage.arg1) {
             FORMATTED_TIME -> formattedTime = inputMessage.obj as String
             FORMATTED_DATE -> formattedDate = inputMessage.obj as String
+            UPDATED_OCCUPANCY -> {
+                occupancySelection = -1
+                occupancySelection = inputMessage.obj as Int
+            }
         }
     }
 
