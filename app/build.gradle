@@ -60,7 +60,7 @@ dependencies {
     implementation project(path: ':time')
     implementation project(path: ':occupancy')
     kapt "com.android.databinding:compiler:$compiler_version"
-    kapt "android.arch.lifecycle:common-java8:$lifecycle_version"
+    kapt "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
     implementation "com.google.dagger:dagger:$dagger_version"
     implementation "com.google.dagger:dagger-android-support:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
